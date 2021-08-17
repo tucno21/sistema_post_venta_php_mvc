@@ -1,0 +1,16 @@
+{
+    "name": "carlos/7_sistema_post_venta",
+    "description": "sistema post venta",
+    "autoload": {
+        "psr-4": {
+            "Carlos\\7SistemaPostVenta\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Carlos",
+            "email": "carlitostucno@gmail.com"
+        }
+    ],
+    "require": {}
+}
