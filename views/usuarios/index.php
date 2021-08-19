@@ -35,25 +35,35 @@
                     </thead>
 
                     <tbody>
-                        <td>1</td>
-                        <td>calor</td>
-                        <td>admin</td>
-                        <td><img src="../adminLte/dist/img/user2-160x160.jpg" alt="avatar" class="img-thumbnail" width="40px"></td>
-                        <td>administrador</td>
-                        <td><button class="btn btn-success btn-xs">Activado</button></td>
-                        <td>2021-12-11 12:05:32</td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-warning" href="/usuarios/actualizar?id=1"><i class="fa fa-edit"></i></a>
+                        <?php foreach ($users as $user) : ?>
+                            <tr>
+                                <td><?php echo $user->id; ?></td>
+                                <td><?php echo $user->name; ?></td>
+                                <td><?php echo $user->username; ?></td>
 
-                                <form method="POST" action="/usuarios/eliminar">
-                                    <input type="hidden" name="id" value="1">
-                                    <input type="hidden" name="tipo" value="usuario">
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
-                                </form>
+                                <?php if ($user->photo == "") : ?>
+                                    <td><img src="../adminLte/dist/img/user2-160x160.jpg" alt="avatar" class="img-thumbnail" width="40px"></td>
+                                <?php else : ?>
+                                    <td><img src="<?php echo $user->photo; ?>" alt="avatar" class="img-thumbnail" width="40px"></td>
+                                <?php endif; ?>
 
-                            </div>
-                        </td>
+                                <td><?php echo $user->profile; ?></td>
+                                <td><button class="btn btn-success btn-xs"><?php echo $user->condition; ?></button></td>
+                                <td><?php echo $user->last_login; ?></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" href="/usuarios/actualizar?id=<?php echo $user->id; ?>"><i class="fa fa-edit"></i></a>
+
+                                        <form method="POST" action="/usuarios/eliminar">
+                                            <input type="hidden" name="id" value="1">
+                                            <input type="hidden" name="tipo" value="usuario">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                        </form>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
