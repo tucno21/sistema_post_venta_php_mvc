@@ -18,7 +18,11 @@ class UserController
 
     public static function crear(Router $router)
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            // $user = new Users($_POST['user']);
+
+        }
         $router->render('usuarios/crear', []);
     }
 }

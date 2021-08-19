@@ -26,7 +26,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fa fa-user"></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="name" placeholder="Ingresar Nombre" required>
+                            <input type="text" class="form-control input-lg" name="user[name]" placeholder="Ingresar Nombre" required>
                         </div>
                     </div>
                     <!-- USUARIO -->
@@ -35,7 +35,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-users-cog"></i></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="username" placeholder="Ingresar Usuario" required>
+                            <input type="text" class="form-control input-lg" name="user[username]" placeholder="Ingresar Usuario" required>
                         </div>
                     </div>
                     <!-- contraseña -->
@@ -44,7 +44,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fa fa-lock"></i></spam>
                             </div>
-                            <input type="password" class="form-control input-lg" name="password" placeholder="Ingresar Contraseña" required>
+                            <input type="password" class="form-control input-lg" name="user[password]" placeholder="Ingresar Contraseña" required>
                         </div>
                     </div>
                     <!-- Perfil -->
@@ -53,7 +53,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-address-card"></i></spam>
                             </div>
-                            <select class="form-control input-lg" name="profile">
+                            <select class="form-control input-lg" name="user[profile]">
                                 <option value="">Seleccione Perfil</option>
                                 <option value="Administrador">Administrador</option>
                                 <option value="Especial">Especial</option>
@@ -68,7 +68,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-image"></i></i></spam>
                             </div>
-                            <input type="file" name="photo" id="imagen" class="visorFoto">
+                            <input type="file" name="user[photo]" id="imagen" class="visorFoto">
                         </div>
                     </div>
                     <div class="form-group">
