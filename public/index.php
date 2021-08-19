@@ -3,14 +3,14 @@
 require_once __DIR__ . '/../include/app.php';
 
 use MVC\Router;
-use Controllers\UserController;
+use Controllers\DashboardController;
 //llamando al controller
 
 
 $router = new Router();
 
 //le pasamos la url y la funcion al ROUTER
-$router->get('/prueba', [UserController::class, "index"]);
+$router->get('/', [DashboardController::class, "index"]);
 
 
 //lamando el metodo de ruter

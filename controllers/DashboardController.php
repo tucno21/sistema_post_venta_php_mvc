@@ -4,10 +4,10 @@ namespace Controllers;
 
 use MVC\Router;
 
-class UserController
+class DashboardController
 {
     public static function index(Router $router)
     {
-        $router->render('paginas/index');
+        $router->render('dashboard/index');
     }
 }

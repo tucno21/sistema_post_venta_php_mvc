@@ -14,7 +14,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <h1>Prueba</h1>
+        <h1>dashboard</h1>
 
 
     </section>
