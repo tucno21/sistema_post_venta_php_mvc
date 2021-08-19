@@ -10,7 +10,7 @@
 
                 <form action="/" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="usuario">
+                        <input name="username" type="text" class="form-control" placeholder="usuario">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="contraseña">
+                        <input name="password" type="password" class="form-control" placeholder="contraseña">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
