@@ -7,7 +7,7 @@ $title = 'AdminLTE <b>3</b>';
 $titleBar = 'AdminLTE 3';
 $titlelogin = '<b>Admin</b>LTE';
 $logo = '../adminLte/dist/img/AdminLTELogo.png';
-$mainLink = 'index3.html';
+$mainLink = '/';
 
 
 //DATOS DEL USUARIO ADMIN
@@ -31,35 +31,52 @@ $menuSession = [
 
 //CREACION DE ENLACES PARA EL MENU SIDEBAR
 $linksSidebar = [
-    ['header' => 'ADMINISTRADOR'],
+    ['header' => 'ADMINISTRAR'],
     [
         'mode' => 'menu',
-        'text' => 'profile',
-        'url'  => 'admin/settings',
+        'text' => 'Usuarios',
+        'url'  => 'usuarios',
         'class' => 'nav-header',
         'icon' => 'fas fa-user',
     ],
     [
         'mode' => 'menu',
-        'text' => 'change_password',
-        'url'  => 'admin/settings',
-        'icon' => 'fas fa-fw fa-lock',
+        'text' => 'Categorias',
+        'url'  => 'categorias',
+        'icon' => 'fab fa-fw fa-buffer',
+    ],
+    [
+        'mode' => 'menu',
+        'text' => 'Productos',
+        'url'  => 'productos',
+        'icon' => 'fab fa-product-hunt',
+    ],
+    [
+        'mode' => 'menu',
+        'text' => 'Clientes',
+        'url'  => 'clientes',
+        'icon' => 'fa fa-users',
     ],
     [
         'mode' => 'submenu',
-        'text'    => 'Categorias',
+        'text'    => 'Ventas',
         'url'    => '#',
-        'icon' => 'fas fa-fw fa-lock',
+        'icon' => 'fas fa-cart-arrow-down',
         'submenu' => [
             [
-                'text' => 'crear',
-                'url'  => 'www.google.com',
-                'icon' => 'far fa-circle ',
+                'text' => 'Administrar ventas',
+                'url'  => 'ventas',
+                'icon' => 'fas fa-tasks',
             ],
             [
-                'text' => 'editar',
-                'url'  => 'www.google.com',
-                'icon' => 'far fa-circle ',
+                'text' => 'Crear ventas',
+                'url'  => 'crear-ventas',
+                'icon' => 'far fa-plus-square',
+            ],
+            [
+                'text' => 'Reportes de ventas',
+                'url'  => 'reportes',
+                'icon' => 'fas fa-file-invoice-dollar',
             ],
         ],
 
