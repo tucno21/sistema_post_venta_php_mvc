@@ -13,7 +13,10 @@ $router = new Router();
 //le pasamos la url y la funcion al ROUTER
 $router->get('/', [DashboardController::class, "index"]);
 
-$router->get('/login', [LoginController::class, "login"]);
+// $router->get('/login', [LoginController::class, "login"]);
+$router->post('/', [LoginController::class, "login"]);
+
+$router->get('/logout', [LoginController::class, "logout"]);
 
 //lamando el metodo de ruter
 $router->comprobarRutas();

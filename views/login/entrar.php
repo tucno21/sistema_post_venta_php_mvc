@@ -8,7 +8,7 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Iniciar Sesión</p>
 
-                <form action="/" method="post">
+                <form method="post">
                     <div class="input-group mb-3">
                         <input name="username" type="text" class="form-control" placeholder="usuario">
                         <div class="input-group-append">

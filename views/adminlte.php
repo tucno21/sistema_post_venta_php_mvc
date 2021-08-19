@@ -18,12 +18,12 @@ $photo = '../adminLte/dist/img/user2-160x160.jpg';
 $menuSession = [
     [
         'text' => 'Perfil',
-        'url'  => 'admin/settings',
+        'url'  => '#',
         'icon' => 'fas fa-address-card',
     ],
     [
         'text' => 'Cerrar sesión',
-        'url'  => 'admin/settings',
+        'url'  => '/logout',
         'icon' => 'fas fa-times-circle',
     ],
 ];
