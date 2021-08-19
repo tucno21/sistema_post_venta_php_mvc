@@ -7,28 +7,26 @@ include 'adminlte.php';
 include 'adminLte/AdminHead.php';
 
 
-// if (isset($_SESSION["admin"])) {
+if (isset($_SESSION["admin"])) {
 
 
-//menu supererior
-include 'adminLte/AdminMenu.php';
+    //menu supererior
+    include 'adminLte/AdminMenu.php';
 
-//menu lateral
-include 'adminLte/AdminMenuLateral.php';
+    //menu lateral
+    include 'adminLte/AdminMenuLateral.php';
 
-//cuerpo en blanco
-// include 'adminLte/paginaWhite.php';
-echo $contenidoLayout;
+    //cuerpo en blanco
+    // include 'adminLte/paginaWhite.php';
+    echo $contenidoLayout;
 
-//footer
-include 'adminLte/AdminFooter.php';
+    //footer
+    include 'adminLte/AdminFooter.php';
+} else {
 
-//
-// } else {
-
-//     //login
-//     include 'adminLte/login.php';
-// }
+    //login
+    include 'login/entrar.php';
+}
 
 //script
 include 'adminLte/AdminScript.php';
