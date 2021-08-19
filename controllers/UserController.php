@@ -64,4 +64,50 @@ class UserController
         }
         $router->render('usuarios/crear', []);
     }
+
+    public static function actualizar(Router $router)
+    {
+        $id = validarORedireccionar('/usuarios');
+        $user = Users::find($id);
+        // debuguear($user);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //asignar los atributos 
+            $args = $_POST['user'];
+
+            //captutar la contraseña y encriptar
+            $password = $_POST['user']['password'];
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+            //asignar la contraseña encriptada al array 
+            $args['password'] = $passwordHash;
+
+            $user->sincronizar($args);
+
+            $errores = $user->validar();
+
+            $nameImage = md5(uniqid(rand(), true)) . '.jpg';
+
+            if ($_FILES['user']['tmp_name']['photo']) {
+                //modificar imagen
+                $image = Imagex::make($_FILES['user']['tmp_name']['photo'])->fit(800, 600);
+                //enviar el nombre a la clase
+                $user->setImage($nameImage);
+            }
+
+            //revisar que el array no este vacio el de errores
+            if (empty($errores)) {
+                //guardar la imagen en el servidor con libreria intervension
+                if ($_FILES['user']['tmp_name']['photo']) {
+                    $image->save(CARPETA_IMAGENES . $nameImage);
+                }
+                //GUARDAR EN LA BD
+                $user->guardar();
+                header('Location: /usuarios');
+            }
+        }
+
+        $router->render('usuarios/actualizar', [
+            'user' => $user,
+        ]);
+    }
 }

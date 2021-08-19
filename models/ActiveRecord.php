@@ -115,11 +115,13 @@ class ActiveRecord
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
 
+        // debuguear($query);
+
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            header('Location: /admin?resultado=2');
-        }
+        // if ($resultado) {
+        //     header('Location: /admin?resultado=2');
+        // }
     }
 
     public function delete()

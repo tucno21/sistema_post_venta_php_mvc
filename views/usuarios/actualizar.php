@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Crear usuario</h1>
+                    <h1>Editar Usuario</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -24,7 +24,7 @@
 
                 </div>
                 <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary btn-lg">Agregar</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Cambiar</button>
                 </div>
             </form>
         </div>

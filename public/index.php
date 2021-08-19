@@ -22,6 +22,8 @@ $router->get('/logout', [LoginController::class, "logout"]);
 $router->get('/usuarios', [UserController::class, "index"]);
 $router->get('/usuarios/crear', [UserController::class, "crear"]);
 $router->post('/usuarios/crear', [UserController::class, "crear"]);
+$router->get('/usuarios/actualizar', [UserController::class, "actualizar"]);
+$router->post('/usuarios/actualizar', [UserController::class, "actualizar"]);
 
 //lamando el metodo de ruter
 $router->comprobarRutas();
