@@ -49,7 +49,15 @@ class ActiveRecord
 
         //asignar al atributo el nombre de la imagen
         if ($imagen) {
-            $this->imagen = $imagen;
+            $this->photo = $imagen;
+        }
+    }
+
+    public function setPasswordHash($pass)
+    {
+        //asignar al atributo el nombre de la imagen
+        if ($pass) {
+            $this->password = $pass;
         }
     }
 
@@ -85,9 +93,10 @@ class ActiveRecord
         $query .= " ') ";
 
         $resultado = self::$db->query($query);
-        if ($resultado) {
-            header('Location: /admin?resultado=1');
-        }
+        // debuguear($resultado);
+        // if ($resultado) {
+        //     header('Location: /usuarios');
+        // }
     }
 
     public function update()

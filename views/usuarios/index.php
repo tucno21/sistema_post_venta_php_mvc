@@ -44,11 +44,11 @@
                                 <?php if ($user->photo == "") : ?>
                                     <td><img src="../adminLte/dist/img/user2-160x160.jpg" alt="avatar" class="img-thumbnail" width="40px"></td>
                                 <?php else : ?>
-                                    <td><img src="<?php echo $user->photo; ?>" alt="avatar" class="img-thumbnail" width="40px"></td>
+                                    <td><img src="../imagenes/<?php echo $user->photo; ?>" alt="avatar" class="img-thumbnail" width="40px"></td>
                                 <?php endif; ?>
 
                                 <td><?php echo $user->profile; ?></td>
-                                <td><button class="btn btn-success btn-xs"><?php echo $user->condition; ?></button></td>
+                                <td><button class="btn btn-success btn-xs"><?php echo $user->estado; ?></button></td>
                                 <td><?php echo $user->last_login; ?></td>
                                 <td>
                                     <div class="btn-group">
