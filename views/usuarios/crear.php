@@ -68,12 +68,12 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-image"></i></i></spam>
                             </div>
-                            <input type="file" name="photo" id="imagen" accept="image/jpeg, image/png">
+                            <input type="file" name="photo" id="imagen" class="visorFoto" accept="image/jpeg, image/png">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="card" style="width: 8rem;">
-                            <img class="img-thumbnail card-img-top" src="../adminLte/dist/img/user2-160x160.jpg" alt="Card image cap">
+                            <img class="img-thumbnail card-img-top previsualizar" src="../adminLte/dist/img/user2-160x160.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">Peso máximo de 1mb</p>
                             </div>

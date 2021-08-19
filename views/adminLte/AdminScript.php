@@ -6,6 +6,8 @@
 <script src="<?php echo $linkURL; ?>dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="<?php echo $linkURL; ?>dist/js/demo.js"></script> -->
+<!-- AdminLTE App -->
+<script src="../js/visorfoto.js"></script>
 </body>
 
 </html>
