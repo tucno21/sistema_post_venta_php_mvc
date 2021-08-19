@@ -20,6 +20,7 @@ $router->get('/logout', [LoginController::class, "logout"]);
 
 //CRUD USUARIOS
 $router->get('/usuarios', [UserController::class, "index"]);
+$router->get('/usuarios/crear', [UserController::class, "crear"]);
 
 //lamando el metodo de ruter
 $router->comprobarRutas();

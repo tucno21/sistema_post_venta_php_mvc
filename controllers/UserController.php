@@ -15,4 +15,10 @@ class UserController
             'users' => $users,
         ]);
     }
+
+    public static function crear(Router $router)
+    {
+
+        $router->render('usuarios/crear', []);
+    }
 }

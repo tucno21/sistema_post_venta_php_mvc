@@ -35,26 +35,26 @@ $linksSidebar = [
     [
         'mode' => 'menu',
         'text' => 'Usuarios',
-        'url'  => 'usuarios',
+        'url'  => '/usuarios',
         'class' => 'nav-header',
         'icon' => 'fas fa-user',
     ],
     [
         'mode' => 'menu',
         'text' => 'Categorias',
-        'url'  => 'categorias',
+        'url'  => '/categorias',
         'icon' => 'fab fa-fw fa-buffer',
     ],
     [
         'mode' => 'menu',
         'text' => 'Productos',
-        'url'  => 'productos',
+        'url'  => '/productos',
         'icon' => 'fab fa-product-hunt',
     ],
     [
         'mode' => 'menu',
         'text' => 'Clientes',
-        'url'  => 'clientes',
+        'url'  => '/clientes',
         'icon' => 'fa fa-users',
     ],
     [
@@ -65,17 +65,17 @@ $linksSidebar = [
         'submenu' => [
             [
                 'text' => 'Administrar ventas',
-                'url'  => 'ventas',
+                'url'  => '/ventas',
                 'icon' => 'fas fa-tasks',
             ],
             [
                 'text' => 'Crear ventas',
-                'url'  => 'crear-ventas',
+                'url'  => '/crear-ventas',
                 'icon' => 'far fa-plus-square',
             ],
             [
                 'text' => 'Reportes de ventas',
-                'url'  => 'reportes',
+                'url'  => '/reportes',
                 'icon' => 'fas fa-file-invoice-dollar',
             ],
         ],
