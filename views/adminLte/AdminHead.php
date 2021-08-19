@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo $linkURL; ?>dist/css/adminlte.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <script src="<?php echo $linkURL; ?>plugins/sweetalert2/sweetalert2.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-collapse">

@@ -68,7 +68,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-image"></i></i></spam>
                             </div>
-                            <input type="file" name="photo" id="imagen" class="visorFoto" accept="image/jpeg, image/png">
+                            <input type="file" name="photo" id="imagen" class="visorFoto">
                         </div>
                     </div>
                     <div class="form-group">
