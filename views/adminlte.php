@@ -1,6 +1,6 @@
 <?php
 //link de los JS CSS
-$linkURL = 'adminLte/';
+$linkURL = '../adminLte/';
 
 // DATOS GENERALES ADMIN
 $title = 'AdminLTE <b>3</b>';
