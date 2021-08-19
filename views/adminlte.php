@@ -6,13 +6,13 @@ $linkURL = '../adminLte/';
 $title = 'AdminLTE <b>3</b>';
 $titleBar = 'AdminLTE 3';
 $titlelogin = '<b>Admin</b>LTE';
-$logo = 'adminLte/dist/img/AdminLTELogo.png';
+$logo = '../adminLte/dist/img/AdminLTELogo.png';
 $mainLink = 'index3.html';
 
 
 //DATOS DEL USUARIO ADMIN
 $name = 'Carlos';
-$photo = 'adminLte/dist/img/user2-160x160.jpg';
+$photo = '../adminLte/dist/img/user2-160x160.jpg';
 
 //MENU CERRAR O PERFIL DE ADMINISTRADOR
 $menuSession = [
