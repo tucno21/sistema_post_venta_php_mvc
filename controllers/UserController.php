@@ -22,6 +22,9 @@ class UserController
 
             // $user = new Users($_POST['user']);
 
+            if ($_FILES['user']['tmp_name']['photo']) {
+                debuguear($_FILES['user']['tmp_name']['photo']);
+            }
         }
         $router->render('usuarios/crear', []);
     }
