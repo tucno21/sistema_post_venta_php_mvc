@@ -32,7 +32,13 @@
                                 <spam class="input-group-text"><i class="fas fa-address-card"></i></spam>
                             </div>
                             <select class="form-control input-lg" name="user[profile]">
-                                <option value="">Seleccione Perfil</option>
+                                <?php if ($user->profile == "Administrador") : ?>
+                                    <option value="Administrador">Administrador</option>
+                                <?php elseif ($user->profile == "Especial") : ?>
+                                    <option value="Especial">Especial</option>
+                                <?php elseif ($user->profile == "Vendedor") : ?>
+                                    <option value="Vendedor">Vendedor</option>
+                                <?php endif; ?>
                                 <option value="Administrador">Administrador</option>
                                 <option value="Especial">Especial</option>
                                 <option value="Vendedor">Vendedor</option>
