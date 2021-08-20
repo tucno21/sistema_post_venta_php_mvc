@@ -8,6 +8,18 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Iniciar Sesión</p>
 
+                <?php
+                if (isset($errores)) {
+                    foreach ($errores as $error) :
+                ?>
+                        <div class="alert alert-danger">
+                            <?php echo $error; ?>
+                        </div>
+                <?php
+                    endforeach;
+                }
+                ?>
+
                 <form method="post">
                     <div class="input-group mb-3">
                         <input name="username" type="text" class="form-control" placeholder="usuario">
@@ -32,10 +44,13 @@
                         </div>
                         <!-- /.col -->
                     </div>
+
                 </form>
 
             </div>
             <!-- /.login-card-body -->
+
+
         </div>
     </div>
     <!-- /.login-box -->

@@ -1,73 +1,31 @@
 <?php
 
 namespace Model;
+// require_once "Conexion.php";
 
-class Login extends ActiveRecord
+class Login
 {
-    protected static $table = 'users';
-    protected static $columnsDB = ['id', 'name', 'username', 'password', 'profile', 'photo'];
+    protected static $db;
 
-    public $id;
-    public $name;
-    public $username;
-    public $password;
-    public $profile;
-    public $photo;
-
-    public function __construct($args = [])
+    //recibe la coneccion a la BD
+    public static function setBD($connected)
     {
-        $this->id = $args['id'] ?? null;
-        $this->name = $args['name'] ?? '';
-        $this->username = $args['username'] ?? '';
-        $this->password = $args['password'] ?? '';
-        $this->profile = $args['profile'] ?? '';
-        $this->photo = $args['photo'] ?? '';
+        self::$db = $connected;
     }
 
-    public function validar()
+    //recibe los datos de controller
+    public static function MostrarUser($table, $colum, $valorColum)
     {
-        //verificar que los imput no este vacio y envia al arreglo errors
-        if (!$this->username) {
-            self::$errors[] = "El username es obligatorio o no es valido";
-        }
-        if (!$this->password) {
-            self::$errors[] = "El password es obligatorio";
-        }
-        return self::$errors;
-    }
 
-    public function existeUsuario()
-    {
-        //revisar si el usario existe o no es
-        $query = "SELECT * FROM " . self::$table . " WHERE username = '" . $this->username . "' LIMIT 1";
-        $resultado = self::$db->query($query);
-        // debuguear($resultado);
+        $stmt = self::$db->query("SELECT * FROM $table WHERE $colum = '$valorColum'");
 
-        if (!$resultado->num_rows) {
-            self::$errors[] = 'El usuario no existe';
-            return;
-        }
-        return $resultado;
-    }
+        //enviar objeto de la respuesta
+        return $stmt->fetch_object();
 
+        //cerrar 
+        $stmt->close();
 
-    public function comprobarPassword($resultado)
-    {
-        $usuario = $resultado->fetch_object(); //trae al usuario con su contraseña
-        $auth = password_verify($this->password, $usuario->password);
-
-        if (!$auth) {
-            self::$errors[] = 'La contraseña es incorrecta';
-            return;
-        }
-        return $auth;
-    }
-
-    public function autenticarAlUsuario()
-    {
-        session_start();
-        $_SESSION['iniciarSesion'] = "ok";
-        // $_SESSION['login'] = true; //se puede colorcar cualquier valor
-        header('Location: /');
+        //limpiar objeto
+        $stmt->null;
     }
 }

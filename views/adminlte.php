@@ -11,14 +11,25 @@ $mainLink = '/';
 
 
 //DATOS DEL USUARIO ADMIN
+if (isset($_SESSION['name'])) {
+    $name = $_SESSION['name'];
+}
 
-$name = 'Carlos';
-$photo = '../adminLte/dist/img/user2-160x160.jpg';
+if (isset($_SESSION['photo'])) {
+    $photo = '../imagenes/' . $_SESSION['photo'];
+} else {
+    $photo = '../adminLte/dist/img/loco.png';
+}
+
+if (isset($_SESSION['profile'])) {
+    $profile = $_SESSION['profile'];
+}
 
 //MENU CERRAR O PERFIL DE ADMINISTRADOR
 $menuSession = [
     [
-        'text' => 'Perfil',
+
+        'text' => isset($profile) ? $profile : '',
         'url'  => '#',
         'icon' => 'fas fa-address-card',
     ],
