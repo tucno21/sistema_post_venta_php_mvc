@@ -22,3 +22,18 @@ function validarORedireccionar(string $url)
 
     return $id;
 }
+
+//validar tipo de contenido 
+function validarTipoContenido($tipo)
+{
+    $tipos = ['user'];
+
+    return in_array($tipo, $tipos);
+}
+
+//escapa / sanitizar del HTML //PARA LOS FORMILARIOS
+function s($html): string
+{
+    $s = htmlspecialchars($html);
+    return $s;
+}

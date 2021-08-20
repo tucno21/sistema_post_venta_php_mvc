@@ -15,7 +15,7 @@ class Users extends ActiveRecord
         $this->password = $args['password'] ?? '';
         $this->profile = $args['profile'] ?? '';
         $this->photo = $args['photo'] ?? '';
-        $this->estado = $args['estado'] ?? 'activo';
+        $this->estado = $args['estado'] ?? '1';
         $this->last_login = date('Y-m-d');
         $this->registration_date = date('Y-m-d');
     }

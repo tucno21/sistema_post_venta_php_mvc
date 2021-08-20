@@ -24,6 +24,7 @@ $router->get('/usuarios/crear', [UserController::class, "crear"]);
 $router->post('/usuarios/crear', [UserController::class, "crear"]);
 $router->get('/usuarios/actualizar', [UserController::class, "actualizar"]);
 $router->post('/usuarios/actualizar', [UserController::class, "actualizar"]);
+$router->get('/usuarios/eliminar', [UserController::class, "eliminar"]);
 
 //lamando el metodo de ruter
 $router->comprobarRutas();

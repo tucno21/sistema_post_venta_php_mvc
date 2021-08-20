@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="mb-2 row">
                 <div class="col-sm-6">
                     <h1>Panel de Usuarios</h1>
                 </div>
@@ -48,17 +48,23 @@
                                 <?php endif; ?>
 
                                 <td><?php echo $user->profile; ?></td>
-                                <td><button class="btn btn-success btn-xs"><?php echo $user->estado; ?></button></td>
+                                <?php if ($user->estado != 0) : ?>
+                                    <td>
+                                        <p class="btn btn-success btn-xs">Activado</p>
+                                    </td>
+                                <?php else : ?>
+                                    <td>
+                                        <p class="btn btn-danger btn-xs">Desactivado</p>
+                                    </td>
+                                <?php endif; ?>
+
                                 <td><?php echo $user->last_login; ?></td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="btn btn-warning" href="/usuarios/actualizar?id=<?php echo $user->id; ?>"><i class="fa fa-edit"></i></a>
 
-                                        <form method="POST" action="/usuarios/eliminar">
-                                            <input type="hidden" name="id" value="1">
-                                            <input type="hidden" name="tipo" value="usuario">
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
-                                        </form>
+                                        <a class="btn btn-danger avisoAlertaxx" href="/usuarios/eliminar?id=<?php echo $user->id; ?>&tipo=user"><i class="fa fa-times"></i></a>
+
 
                                     </div>
                                 </td>

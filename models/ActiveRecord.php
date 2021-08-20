@@ -130,7 +130,6 @@ class ActiveRecord
         $resultado = self::$db->query($query);
         if ($resultado) {
             $this->deleteImage();
-            header('Location: /admin?resultado=3');
         }
     }
 

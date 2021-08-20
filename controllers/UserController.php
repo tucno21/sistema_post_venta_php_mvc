@@ -110,4 +110,29 @@ class UserController
             'user' => $user,
         ]);
     }
+
+    public static function eliminar()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            //validar id de la captura del url
+
+            $id = $_GET['id'];
+
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+
+                $tipo = $_GET['tipo'];
+
+
+                if (validarTipoContenido($tipo)) {
+                    $user = Users::find($id);
+                    // debuguear($user);
+                    $user->delete();
+                    header('Location: /usuarios');
+                }
+            }
+        }
+    }
 }

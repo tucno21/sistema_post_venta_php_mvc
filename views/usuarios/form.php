@@ -39,6 +39,33 @@
                             </select>
                         </div>
                     </div>
+                    <!-- estado -->
+                    <div class="form-group">
+                        <div class="border rounded input-group border-secondary">
+                            <div class="input-group-prepend">
+                                <spam class="input-group-text">Estado</spam>
+                            </div>
+
+                            <div class="mx-auto my-auto custom-control custom-radio">
+                                <?php if ($user->estado == 1) : ?>
+                                    <input value="1" type="radio" class="custom-control-input" id="estado1" name="user[estado]" checked>
+                                <?php else : ?>
+                                    <input value="1" type="radio" class="custom-control-input" id="estado1" name="user[estado]">
+                                <?php endif; ?>
+                                <label class="custom-control-label" for="estado1">Activado</label>
+                            </div>
+                            <div class="mx-auto my-auto custom-control custom-radio">
+                                <?php if ($user->estado == 0) : ?>
+                                    <input value="0" type="radio" class="custom-control-input" id="estado2" name="user[estado]" checked>
+                                <?php else : ?>
+                                    <input value="0" type="radio" class="custom-control-input" id="estado2" name="user[estado]">
+                                <?php endif; ?>
+                                <label class="custom-control-label" for="estado2">Desactivado</label>
+                            </div>
+
+
+                        </div>
+                    </div>
                     <!-- foto -->
                     <div class="form-group">
                         <label for="imagen">Foto:</label>
@@ -51,7 +78,7 @@
                     </div>
                     <div class="form-group">
                         <div class="card" style="width: 8rem;">
-                            <?php if ($user->photo) : ?>
+                            <?php if (!empty($user->photo)) : ?>
                                 <img class="img-thumbnail card-img-top previsualizar" src="../imagenes/<?php echo $user->photo; ?>" alt="Card image cap">
                             <?php else : ?>
                                 <img class="img-thumbnail card-img-top previsualizar" src="../adminLte/dist/img/user2-160x160.jpg" alt="Card image cap">
