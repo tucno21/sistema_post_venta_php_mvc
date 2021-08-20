@@ -3,15 +3,9 @@
 namespace Model;
 // require_once "Conexion.php";
 
-class Login
+class Login extends Template
 {
-    protected static $db;
 
-    //recibe la coneccion a la BD
-    public static function setBD($connected)
-    {
-        self::$db = $connected;
-    }
 
     //recibe los datos de controller
     public static function MostrarUser($table, $colum, $valorColum)
