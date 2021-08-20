@@ -63,9 +63,9 @@ class ActiveRecord
 
     public function deleteImage()
     {
-        $existeAchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+        $existeAchivo = file_exists(CARPETA_IMAGENES . $this->photo);
         if ($existeAchivo) {
-            unlink(CARPETA_IMAGENES . $this->imagen);
+            unlink(CARPETA_IMAGENES . $this->photo);
         }
     }
 
