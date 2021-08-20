@@ -20,7 +20,8 @@ class LoginController
             if (empty($errors)) {
                 //revisar si el usuario existente
                 $resultado = $login->existeUsuario();
-
+                // $usuario = $resultado->fetch_object();
+                // debuguear($user);
 
                 if (!$resultado) {
                     $errors = Login::getErrors();
@@ -35,11 +36,13 @@ class LoginController
                         $errors = Login::getErrors();
                     }
                 }
+                // $usuario = $resultado->fetch_object();
             }
         }
 
         $router->render('login/entrar', [
             'errores' => $errors,
+            'usuario' => $usuario,
         ]);
     }
 

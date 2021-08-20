@@ -5,19 +5,23 @@ namespace Model;
 class Login extends ActiveRecord
 {
     protected static $table = 'users';
-    protected static $columnsDB = ['id', 'username', 'password', 'profile'];
+    protected static $columnsDB = ['id', 'name', 'username', 'password', 'profile', 'photo'];
 
     public $id;
+    public $name;
     public $username;
     public $password;
     public $profile;
+    public $photo;
 
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
+        $this->name = $args['name'] ?? '';
         $this->username = $args['username'] ?? '';
         $this->password = $args['password'] ?? '';
         $this->profile = $args['profile'] ?? '';
+        $this->photo = $args['photo'] ?? '';
     }
 
     public function validar()
@@ -46,10 +50,10 @@ class Login extends ActiveRecord
         return $resultado;
     }
 
+
     public function comprobarPassword($resultado)
     {
         $usuario = $resultado->fetch_object(); //trae al usuario con su contraseña
-
         $auth = password_verify($this->password, $usuario->password);
 
         if (!$auth) {
@@ -62,7 +66,7 @@ class Login extends ActiveRecord
     public function autenticarAlUsuario()
     {
         session_start();
-        $_SESSION['usuario'] = "ok";
+        $_SESSION['iniciarSesion'] = "ok";
         // $_SESSION['login'] = true; //se puede colorcar cualquier valor
         header('Location: /');
     }

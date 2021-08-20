@@ -11,6 +11,7 @@ $mainLink = '/';
 
 
 //DATOS DEL USUARIO ADMIN
+
 $name = 'Carlos';
 $photo = '../adminLte/dist/img/user2-160x160.jpg';
 

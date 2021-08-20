@@ -1,7 +1,6 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
+session_start();
+
 // variables generales y creador de muna lateral
 include 'adminlte.php';
 
@@ -9,8 +8,7 @@ include 'adminlte.php';
 include 'adminLte/AdminHead.php';
 
 
-if (isset($_SESSION['usuario']) == "ok") {
-
+if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
 
     //menu supererior
     include 'adminLte/AdminMenu.php';
