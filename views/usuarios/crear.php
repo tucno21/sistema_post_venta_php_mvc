@@ -20,6 +20,17 @@
             </div>
             <form method="POST" enctype="multipart/form-data">
                 <div class="card-body">
+                    <?php
+                    if (isset($errores)) {
+                        foreach ($errores as $error) :
+                    ?>
+                            <div class="alert alert-danger">
+                                <?php echo $error; ?>
+                            </div>
+                    <?php
+                        endforeach;
+                    }
+                    ?>
 
                     <!-- NOMBRE -->
                     <div class="form-group">
