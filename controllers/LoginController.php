@@ -31,13 +31,16 @@ class LoginController
                         //comparar el ingreso con la tabla
                         if ($respuesta->username == $_POST["username"] && $encritar) {
 
-                            session_start();
-                            $_SESSION["iniciarSesion"] = "ok";
-                            $_SESSION['name'] = $respuesta->name;
-                            $_SESSION['profile'] = $respuesta->profile;
-                            $_SESSION['photo'] = $respuesta->photo;
-
-                            header('Location: /');
+                            if ($respuesta->estado == 1) {
+                                session_start();
+                                $_SESSION["iniciarSesion"] = "ok";
+                                $_SESSION['name'] = $respuesta->name;
+                                $_SESSION['profile'] = $respuesta->profile;
+                                $_SESSION['photo'] = $respuesta->photo;
+                                header('Location: /');
+                            } else {
+                                $errores = ['El usuario esta desactivado'];
+                            }
                         } else {
                             $errores = ['La contraseña es incorrecta'];
                         }
