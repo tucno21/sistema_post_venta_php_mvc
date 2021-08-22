@@ -3,8 +3,8 @@
 namespace Controllers;
 
 use MVC\Router;
+use Model\Login;
 use Model\Users;
-//llamar a la imagen
 use Intervention\Image\ImageManagerStatic as Imagex;
 
 class UserController
@@ -46,36 +46,47 @@ class UserController
                 preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['username']) &&
                 preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['password'])
             ) {
-                $password = $_POST['user']['password'];
-                $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-                $_POST['user']['password'] = $passwordHash;
 
-                //generar nombre unico para la imagen
-                $nameImage = md5(uniqid(rand(), true)) . '.jpg';
+                //Buscar ususario y traer
+                $table = "users";
+                $colum =  "username";
+                $valorColum = $_POST['user']["username"];
+                $respuesta = Login::MostrarUser($table, $colum, $valorColum);
+                $nombre = isset($respuesta->username);
+                if (!$nombre) {
+                    $password = $_POST['user']['password'];
+                    $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+                    $_POST['user']['password'] = $passwordHash;
 
-                if ($_FILES['user']['tmp_name']['photo']) {
-                    //modificar imagen
-                    $image = Imagex::make($_FILES['user']['tmp_name']['photo'])->fit(800, 600);
-                    //agregar al array
-                    $_POST['user']['photo'] = $nameImage;
-                }
-                $_POST['user']['estado'] = 1;
-                $_POST['user']['last_login'] = date('Y-m-d');
-                $_POST['user']['registration_date'] = date('Y-m-d');
+                    //generar nombre unico para la imagen
+                    $nameImage = md5(uniqid(rand(), true)) . '.jpg';
 
-                if (empty($errores)) {
-                    if (!is_dir(CARPETA_IMAGENES)) {
-                        mkdir(CARPETA_IMAGENES);
+                    if ($_FILES['user']['tmp_name']['photo']) {
+                        //modificar imagen
+                        $image = Imagex::make($_FILES['user']['tmp_name']['photo'])->fit(800, 600);
+                        //agregar al array
+                        $_POST['user']['photo'] = $nameImage;
                     }
-                    $user = $_POST['user'];
-                    $table = "users";
-                    $respuesta = Users::SaveUser($table, $user);
+                    $_POST['user']['estado'] = 1;
+                    $_POST['user']['last_login'] = date('Y-m-d');
+                    $_POST['user']['registration_date'] = date('Y-m-d');
 
-                    $image->save(CARPETA_IMAGENES . $nameImage);
+                    if (empty($errores)) {
+                        if (!is_dir(CARPETA_IMAGENES)) {
+                            mkdir(CARPETA_IMAGENES);
+                        }
+                        $user = $_POST['user'];
+                        $table = "users";
+                        $respuesta = Users::SaveUser($table, $user);
 
-                    if ($respuesta == "ok") {
-                        header('Location: /usuarios');
+                        $image->save(CARPETA_IMAGENES . $nameImage);
+
+                        if ($respuesta == "ok") {
+                            header('Location: /usuarios');
+                        }
                     }
+                } else {
+                    array_push($errores, "El usuario existe, asigne otro usuario");
                 }
             } else {
                 array_push($errores, "Caracteres no admitidos, ingrese caracteres A-Z y/o 0-9");
