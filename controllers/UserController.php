@@ -12,8 +12,12 @@ class UserController
     public static function index(Router $router)
     {
 
+        $users = Users::AllUsers();
+        // debuguear($users);
 
-        $router->render('usuarios/index', []);
+        $router->render('usuarios/index', [
+            'users' => $users,
+        ]);
     }
 
     public static function crear(Router $router)
@@ -38,7 +42,7 @@ class UserController
                 array_push($errores, "La foto es obligatorio");
             }
             if (
-                preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['name']) &&
+                preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['user']['name']) &&
                 preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['username']) &&
                 preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['password'])
             ) {
@@ -79,6 +83,75 @@ class UserController
         }
 
         $router->render('usuarios/crear', [
+            'errores' => $errores,
+        ]);
+    }
+
+    public static function actualizar(Router $router)
+    {
+        $errores = [];
+        $id = validarORedireccionar('/usuarios');
+        $valorColum = $id;
+        //busscar usuario y traer como objeto
+        $user = Users::find($valorColum);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if (!$_POST['user']['name']) {
+                array_push($errores, "El nombre es obligatorio");
+            }
+            if (!$_POST['user']['username']) {
+                array_push($errores, "El usuario es obligatorio");
+            }
+            if (!$_POST['user']['password']) {
+                array_push($errores, "La contraseña es obligatorio");
+            }
+            if (!$_POST['user']['profile']) {
+                array_push($errores, "La categoria es obligatorio");
+            }
+            if (
+                preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['user']['name']) &&
+                preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['username']) &&
+                preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['password'])
+            ) {
+                $args = $_POST['user'];
+
+                //captutar la contraseña y encriptar
+                $password = $_POST['user']['password'];
+                $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+                //asignar la contraseña encriptada al array 
+                $args['password'] = $passwordHash;
+
+                if ($_FILES['user']['tmp_name']['photo']) {
+                    //modificar imagen
+                    $image = Imagex::make($_FILES['user']['tmp_name']['photo'])->fit(800, 600);
+                    //crea un nombre aleatorio
+                    $nameImage = md5(uniqid(rand(), true)) . '.jpg';
+
+                    $existeAchivo = file_exists(CARPETA_IMAGENES . $user->photo);
+                    if ($existeAchivo) {
+                        unlink(CARPETA_IMAGENES . $user->photo);
+                    }
+                    //enviar nombre foto al array
+                    $args['photo'] = $nameImage;
+                    //guardar server
+                    $image->save(CARPETA_IMAGENES . $nameImage);
+                }
+
+                //eenviar el array y actualizar
+                $respuesta = Users::update($args, $id);
+
+                if ($respuesta == "ok") {
+                    header('Location: /usuarios');
+                }
+            } else {
+                array_push($errores, "Caracteres no admitidos, ingrese caracteres A-Z y/o 0-9");
+            }
+        }
+
+        $router->render('usuarios/actualizar', [
+            'user' => $user,
             'errores' => $errores,
         ]);
     }

@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="mb-2 row">
                 <div class="col-sm-6">
                     <h1>Editar Usuario</h1>
                 </div>
@@ -14,16 +14,27 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="card w-75 mx-auto">
+        <div class="mx-auto card w-75">
             <div class="card-header">
                 <a class="btn btn-secondary" href="/usuarios">Volver</a>
             </div>
             <form method="POST" enctype="multipart/form-data">
                 <div class="card-body">
+                    <?php
+                    if (isset($errores)) {
+                        foreach ($errores as $error) :
+                    ?>
+                            <div class="alert alert-danger">
+                                <?php echo $error; ?>
+                            </div>
+                    <?php
+                        endforeach;
+                    }
+                    ?>
                     <?php include __DIR__ . '/form.php'; ?>
 
                 </div>
-                <div class="card-footer text-right">
+                <div class="text-right card-footer">
                     <button type="submit" class="btn btn-primary btn-lg">Cambiar</button>
                 </div>
             </form>
