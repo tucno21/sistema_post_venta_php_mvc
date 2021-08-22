@@ -4,6 +4,7 @@ namespace Controllers;
 
 use MVC\Router;
 use Model\Login;
+use Model\Users;
 
 class LoginController
 {
@@ -37,6 +38,15 @@ class LoginController
                                 $_SESSION['name'] = $respuesta->name;
                                 $_SESSION['profile'] = $respuesta->profile;
                                 $_SESSION['photo'] = $respuesta->photo;
+
+                                $fecha = date("Y-m-d");
+                                $hora = date("H:i:s");
+                                $fechaActual = $fecha . ' ' . $hora;
+                                $args = [];
+                                $args['last_login'] =  $fechaActual;
+                                $id = $respuesta->id;
+                                $envio = Users::update($args, $id);
+                                // debuguear($envio);
                                 header('Location: /');
                             } else {
                                 $errores = ['El usuario esta desactivado'];
