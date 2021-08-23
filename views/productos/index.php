@@ -37,24 +37,26 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><img src="../adminLte/dist/img/user2-160x160.jpg" alt="avatar" class="img-thumbnail" width="40px"></td>
-                            <td>0001</td>
-                            <td>Lorem ipsum dolor, sit amet</td>
-                            <td>Lorem</td>
-                            <td>20</td>
-                            <td>5.00</td>
-                            <td>10.00</td>
-                            <td>2021-12-11 12:05:32</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-warning" href="/productos/actualizar?id=1"><i class="fa fa-edit"></i></a>
+                        <?php foreach ($products as $product) : ?>
+                            <tr>
+                                <td><?php echo $product->id; ?></td>
+                                <td><img src="../adminLte/dist/img/user2-160x160.jpg" alt="avatar" class="img-thumbnail" width="40px"></td>
+                                <td><?php echo $product->code; ?></td>
+                                <td><?php echo $product->description; ?></td>
+                                <td><?php echo $product->category; ?></td>
+                                <td><?php echo $product->stock; ?></td>
+                                <td><?php echo $product->price_buy; ?></td>
+                                <td><?php echo $product->price_sale; ?></td>
+                                <td><?php echo $product->date; ?></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" href="/productos/actualizar?id=<?php echo $product->id; ?>"><i class="fa fa-edit"></i></a>
 
-                                    <a class="btn btn-danger avisoAlertaxx" href="/productos/eliminar?id=1&tipo=user"><i class="fa fa-times"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                                        <a class="btn btn-danger avisoAlertaxx" href="/productos/eliminar?id=<?php echo $product->id; ?>&tipo=product"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

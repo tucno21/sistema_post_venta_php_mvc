@@ -3,13 +3,18 @@
 namespace Controllers;
 
 use MVC\Router;
+use Model\Products;
 
 class ProductController
 {
     public static function index(Router $router)
     {
+        $products = Products::AllProdCategory();
+        // debuguear($products);
+        $router->render('productos/index', [
+            'products' => $products,
 
-        $router->render('productos/index', []);
+        ]);
     }
 
     public static function crear(Router $router)
