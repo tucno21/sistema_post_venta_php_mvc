@@ -4,6 +4,7 @@ namespace Model;
 
 class Users extends Template
 {
+    protected static $table = 'users';
 
     public static function SaveUser($table, $datos)
     {
@@ -17,29 +18,6 @@ class Users extends Template
         } else {
             return "error";
         }
-
-        //cerrar 
-        $stmt->close();
-
-        //limpiar objeto
-        $stmt->null;
-    }
-
-    public static function AllUsers()
-    {
-
-        $table = "users";
-
-        $stmt = self::$db->query("SELECT * FROM $table");
-        //Pasar todos los datos a arreglo asociativo
-        $resultadato = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
-        //convertir el arreglo a objeto
-        $mi_objeto = json_decode(json_encode($resultadato));
-        // debuguear($mi_objeto);
-
-        //enviar objeto de la respuesta
-        return $mi_objeto;
-
 
         //cerrar 
         $stmt->close();

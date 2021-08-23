@@ -12,7 +12,7 @@ class UserController
     public static function index(Router $router)
     {
 
-        $users = Users::AllUsers();
+        $users = Users::All();
         // debuguear($users);
 
         $router->render('usuarios/index', [
