@@ -94,11 +94,13 @@
                             <div class=" mt-2 row row-cols-1 row-cols-md-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label>
-                                            <input type="checkbox" class="minimal porcentaje" checked>
-                                            Utilizar porcentaje
-                                        </label>
+                                        <div class="icheck-primary">
+                                            <input type="checkbox" class="porcentaje" id="ventaporcentaje" checked>
+                                            <label for="ventaporcentaje">Utilizar porcentaje
+                                            </label>
+                                        </div>
                                     </div>
+
                                 </div>
                                 <div class="col">
                                     <div class="input-group">

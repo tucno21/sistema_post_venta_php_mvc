@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-collapse">
