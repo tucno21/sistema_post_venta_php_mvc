@@ -117,4 +117,17 @@ class Template
         //limpiar objeto
         $stmt->null;
     }
+
+    public static function delete($id)
+    {
+        $query = "DELETE FROM " . static::$table . " WHERE id='$id'";
+
+        $stmt = self::$db->query($query);
+
+        if ($stmt) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
 }
