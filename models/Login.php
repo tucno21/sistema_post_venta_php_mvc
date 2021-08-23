@@ -5,21 +5,5 @@ namespace Model;
 
 class Login extends Template
 {
-
-
-    //recibe los datos de controller
-    public static function MostrarUser($table, $colum, $valorColum)
-    {
-
-        $stmt = self::$db->query("SELECT * FROM $table WHERE $colum = '$valorColum'");
-
-        //enviar objeto de la respuesta
-        return $stmt->fetch_object();
-
-        //cerrar 
-        $stmt->close();
-
-        //limpiar objeto
-        $stmt->null;
-    }
+    protected static $table = 'users';
 }

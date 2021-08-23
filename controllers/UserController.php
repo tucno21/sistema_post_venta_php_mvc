@@ -48,10 +48,9 @@ class UserController
             ) {
 
                 //Buscar ususario y traer
-                $table = "users";
                 $colum =  "username";
                 $valorColum = $_POST['user']["username"];
-                $respuesta = Login::MostrarUser($table, $colum, $valorColum);
+                $respuesta = Login::MostrarUser($colum, $valorColum);
                 $nombre = isset($respuesta->username);
                 if (!$nombre) {
                     $password = $_POST['user']['password'];

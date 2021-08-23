@@ -19,12 +19,11 @@ class LoginController
                     preg_match('/^[a-zA-z0-9]+$/', $_POST["password"])
                 ) {
                     //variable para las consultas
-                    $table = "users";
                     $colum =  "username";
                     $valorColum = $_POST["username"];
                     //conectar y recibir una respuesta del MODEL
                     //trae la fila del user que estoy buscando...
-                    $respuesta = Login::MostrarUser($table, $colum, $valorColum);
+                    $respuesta = Login::MostrarUser($colum, $valorColum);
 
                     if ($respuesta) {
                         $encritar = password_verify($_POST["password"], $respuesta->password);
