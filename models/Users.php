@@ -27,24 +27,6 @@ class Users extends Template
     }
 
     //recibe los datos de controller
-    public static function find($id)
-    {
-        $table = "users";
-        $colum = "id";
-
-        $stmt = self::$db->query("SELECT * FROM $table WHERE $colum = '$id'");
-
-        //enviar objeto de la respuesta
-        return $stmt->fetch_object();
-
-        //cerrar 
-        $stmt->close();
-
-        //limpiar objeto
-        $stmt->null;
-    }
-
-    //recibe los datos de controller
     public static function update($datos, $id)
     {
         $table = "users";

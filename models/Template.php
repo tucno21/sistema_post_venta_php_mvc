@@ -31,6 +31,23 @@ class Template
         $stmt->null;
     }
 
+    //recibe los datos de controller
+    public static function find($id)
+    {
+        $colum = "id";
+        $query = "SELECT * FROM " . static::$table . " WHERE $colum = '$id'";
+        $stmt = self::$db->query($query);
+
+        //enviar objeto de la respuesta
+        return $stmt->fetch_object();
+
+        //cerrar 
+        $stmt->close();
+
+        //limpiar objeto
+        $stmt->null;
+    }
+
     public static function All()
     {
         $query = "SELECT * FROM " . static::$table;
