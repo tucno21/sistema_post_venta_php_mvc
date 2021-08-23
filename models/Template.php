@@ -15,7 +15,7 @@ class Template
     }
 
     //buscar un dato por columna
-    public static function MostrarUser($colum, $valorColum)
+    public static function FindColumn($colum, $valorColum)
     {
 
         $query = "SELECT * FROM " . static::$table . " WHERE $colum = '$valorColum'";

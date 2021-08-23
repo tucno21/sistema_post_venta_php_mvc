@@ -50,7 +50,7 @@ class UserController
                 //Buscar ususario y traer
                 $colum =  "username";
                 $valorColum = $_POST['user']["username"];
-                $respuesta = Login::MostrarUser($colum, $valorColum);
+                $respuesta = Login::FindColumn($colum, $valorColum);
                 $nombre = isset($respuesta->username);
                 if (!$nombre) {
                     $password = $_POST['user']['password'];

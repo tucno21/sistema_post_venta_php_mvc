@@ -23,7 +23,7 @@ class LoginController
                     $valorColum = $_POST["username"];
                     //conectar y recibir una respuesta del MODEL
                     //trae la fila del user que estoy buscando...
-                    $respuesta = Login::MostrarUser($colum, $valorColum);
+                    $respuesta = Login::FindColumn($colum, $valorColum);
 
                     if ($respuesta) {
                         $encritar = password_verify($_POST["password"], $respuesta->password);
