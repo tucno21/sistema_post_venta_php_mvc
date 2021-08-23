@@ -11,4 +11,13 @@ class ProductController
 
         $router->render('productos/index', []);
     }
+
+    public static function crear(Router $router)
+    {
+        $errores = [];
+
+        $router->render('productos/crear', [
+            'errores' => $errores,
+        ]);
+    }
 }
