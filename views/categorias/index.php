@@ -20,7 +20,7 @@
             </div>
 
             <div class="card-body">
-                <table class="table table-bordered table-striped dtr-inline dt-responsive tablaDataTable ">
+                <table class="table table-bordered table-striped dtr-inline dt-responsive tablaDataTable">
                     <thead>
                         <tr>
                             <th style="width: 10px;">N°</th>
@@ -30,20 +30,21 @@
                     </thead>
 
                     <tbody>
-                        <td>1</td>
-                        <td>computadora</td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-warning" href="/categorias/actualizar?id=1"><i class="fa fa-edit"></i></a>
+                        <?php foreach ($categories as $category) : ?>
+                            <tr>
+                                <td><?php echo $category->id; ?></td>
+                                <td><?php echo $category->category; ?></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" href="/categorias/actualizar?id=<?php echo $category->id; ?>"><i class="fa fa-edit"></i></a>
 
-                                <a class="btn btn-danger avisoAlertaxx" href="/categorias/eliminar?id=1&tipo=user"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
+                                        <a class="btn btn-danger avisoAlertaxx" href="/categorias/eliminar?id=<?php echo $category->id; ?>&tipo=categoria"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>
-            <div class="card-footer">
-                FOOTER
             </div>
         </div>
 
