@@ -95,4 +95,24 @@ class CategoryController
             'categoria' => $categoria,
         ]);
     }
+
+    public static function eliminar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $id = $_GET['id'];
+            //validar que el id sea entero
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+                //verificar sea tipo usuario
+                $tipo = $_GET['tipo'];
+                if (validarTipoContenido($tipo)) {
+                    $respuesta = Categories::delete($id);
+                    if ($respuesta == "ok") {
+                        header('Location: /categorias');
+                    }
+                }
+            }
+        }
+    }
 }
