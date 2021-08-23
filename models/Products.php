@@ -11,8 +11,8 @@ class Products extends Template
     public static function AllProdCategory()
     {
         // $query1 = "SELECT * FROM " . self::$table;
-        // $query = "SELECT P.id, P.code, p.description, P.image, P.stock, P.price_buy, P.price_sale, P.date, C.category FROM products P INNER JOIN categories C ON P.categoryId = C.id ";
-        $query = "SELECT * FROM products P INNER JOIN categories C ON P.categoryId = C.id";
+        $query = "SELECT P.id, P.code, p.description, P.image, P.stock, P.price_buy, P.price_sale, P.date, C.category FROM products P INNER JOIN categories C ON P.categoryId = C.id ";
+        // $query = "SELECT * FROM products P INNER JOIN categories C ON P.categoryId = C.id";
 
         $stmt = self::$db->query($query);
 
