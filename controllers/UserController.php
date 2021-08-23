@@ -75,8 +75,7 @@ class UserController
                             mkdir(CARPETA_IMAGENES);
                         }
                         $user = $_POST['user'];
-                        $table = "users";
-                        $respuesta = Users::SaveUser($table, $user);
+                        $respuesta = Users::Save($user);
 
                         $image->save(CARPETA_IMAGENES . $nameImage);
 

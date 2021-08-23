@@ -68,4 +68,25 @@ class Template
         //limpiar objeto
         $stmt->null;
     }
+
+    public static function Save($datos)
+    {
+        $columns = implode(", ", array_keys($datos));
+        $values = implode("', '", array_values($datos));
+
+        $query = "INSERT INTO " . static::$table . "($columns) VALUES ('$values')";
+        $stmt = self::$db->query($query);
+
+        if ($stmt) {
+            return "ok";
+        } else {
+            return "error";
+        }
+
+        //cerrar 
+        $stmt->close();
+
+        //limpiar objeto
+        $stmt->null;
+    }
 }
