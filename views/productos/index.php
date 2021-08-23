@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="mb-2 row">
                 <div class="col-sm-6">
-                    <h1>Panel de Usuarios</h1>
+                    <h1>Panel de Productos</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -16,7 +16,7 @@
 
         <div class="card">
             <div class="card-header">
-                <a class="btn btn-primary" href="/usuarios/crear">Agregar Usuario</a>
+                <a class="btn btn-primary" href="/productos/crear">Agregar Producto</a>
             </div>
 
             <div class="card-body">
@@ -24,34 +24,34 @@
                     <thead>
                         <tr>
                             <th style="width: 10px;">N°</th>
-                            <th>Nombre</th>
-                            <th>Usuario</th>
-                            <th>Foto</th>
-                            <th>Perfil</th>
-                            <th>Estado</th>
+                            <th>Imagen</th>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Categoria</th>
+                            <th>Stock</th>
+                            <th>Precio de compra</th>
+                            <th>Precio de Venta</th>
+                            <th>F. Registro</th>
                             <th>Aciones</th>
                         </tr>
                     </thead>
 
                     <tbody>
-
                         <tr>
                             <td>1</td>
-                            <td>carlos</td>
-                            <td>admin</td>
-                            <td><img src="../adminLte/dist/img/user2-160x160.jpg" alt="avatar" class="img-thumbnail"
-                                    width="40px"></td>
-                            <td>administrador </td>
-                            <td>
-                                <p class="btn btn-success btn-xs">Activado</p>
-                            </td>
+                            <td><img src="../adminLte/dist/img/user2-160x160.jpg" alt="avatar" class="img-thumbnail" width="40px"></td>
+                            <td>0001</td>
+                            <td>Lorem ipsum dolor, sit amet</td>
+                            <td>Lorem</td>
+                            <td>20</td>
+                            <td>5.00</td>
+                            <td>10.00</td>
+                            <td>2021-12-11 12:05:32</td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-warning" href="/usuarios/actualizar?id=1"><i
-                                            class="fa fa-edit"></i></a>
+                                    <a class="btn btn-warning" href="/productos/actualizar?id=1"><i class="fa fa-edit"></i></a>
 
-                                    <a class="btn btn-danger avisoAlertaxx" href="/usuarios/eliminar?id=1&tipo=user"><i
-                                            class="fa fa-times"></i></a>
+                                    <a class="btn btn-danger avisoAlertaxx" href="/productos/eliminar?id=1&tipo=user"><i class="fa fa-times"></i></a>
                                 </div>
                             </td>
                         </tr>
