@@ -30,8 +30,24 @@
                     <?php
                         endforeach;
                     }
+
                     ?>
 
+                    <!-- CATEGORIA -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <form method="POST"></form>
+                            <div class="input-group-prepend">
+                                <spam class="input-group-text"><i class="fas fa-money-check"></i></spam>
+                            </div>
+                            <select class="form-control input-lg" name="product[profile]">
+                                <option value="">Seleccione Categoria</option>
+                                <?php foreach ($categorias as $category) : ?>
+                                    <option value="<?php echo $category->id; ?>"><?php echo $category->category; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
                     <!-- CODIGO -->
                     <div class="form-group">
                         <div class="input-group">
@@ -48,20 +64,6 @@
                                 <spam class="input-group-text"><i class="fas fa-file-alt"></i></spam>
                             </div>
                             <input type="text" class="form-control input-lg" name="product[username]" placeholder="Ingresar Descripción" required>
-                        </div>
-                    </div>
-                    <!-- CATEGORIA -->
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <spam class="input-group-text"><i class="fas fa-money-check"></i></spam>
-                            </div>
-                            <select class="form-control input-lg" name="product[profile]">
-                                <option value="">Seleccione Categoria</option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Especial">Especial</option>
-                                <option value="Vendedor">Vendedor</option>
-                            </select>
                         </div>
                     </div>
                     <!-- STOCK -->

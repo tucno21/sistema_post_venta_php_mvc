@@ -4,6 +4,7 @@ namespace Controllers;
 
 use MVC\Router;
 use Model\Products;
+use Model\Categories;
 
 class ProductController
 {
@@ -20,9 +21,11 @@ class ProductController
     public static function crear(Router $router)
     {
         $errores = [];
+        $categorias = Categories::All();
 
         $router->render('productos/crear', [
             'errores' => $errores,
+            'categorias' => $categorias,
         ]);
     }
 
