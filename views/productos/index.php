@@ -20,7 +20,7 @@
             </div>
 
             <div class="card-body">
-                <table class="table table-bordered table-striped dtr-inline dt-responsive tablaDataTable">
+                <table class="table table-bordered table-striped dtr-inline dt-responsive tablaProductos">
                     <thead>
                         <tr>
                             <th style="width: 10px;">N°</th>
@@ -36,28 +36,7 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <?php foreach ($products as $product) : ?>
-                            <tr>
-                                <td><?php echo $product->id; ?></td>
-                                <td><img src="../adminLte/dist/img/user2-160x160.jpg" alt="avatar" class="img-thumbnail" width="40px"></td>
-                                <td><?php echo $product->code; ?></td>
-                                <td><?php echo $product->description; ?></td>
-                                <td><?php echo $product->category; ?></td>
-                                <td><?php echo $product->stock; ?></td>
-                                <td><?php echo $product->price_buy; ?></td>
-                                <td><?php echo $product->price_sale; ?></td>
-                                <td><?php echo $product->date; ?></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-warning" href="/productos/actualizar?id=<?php echo $product->id; ?>"><i class="fa fa-edit"></i></a>
 
-                                        <a class="btn btn-danger avisoAlertaxx" href="/productos/eliminar?id=<?php echo $product->id; ?>&tipo=product"><i class="fa fa-times"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
                 </table>
             </div>
             <div class="card-footer">

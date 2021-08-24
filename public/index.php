@@ -43,6 +43,8 @@ $router->post('/productos/crear', [ProductController::class, "crear"]);
 $router->get('/productos/actualizar', [ProductController::class, "actualizar"]);
 $router->post('/productos/actualizar', [ProductController::class, "actualizar"]);
 $router->get('/productos/eliminar', [ProductController::class, "eliminar"]);
+//creacion de JSON PARA productos index y acelerar la carga de HTML
+$router->get('/productos/lista', [ProductController::class, "lista"]);
 
 //lamando el metodo de ruter
 $router->comprobarRutas();
