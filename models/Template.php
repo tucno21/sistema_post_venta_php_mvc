@@ -31,6 +31,23 @@ class Template
         $stmt->null;
     }
 
+    //buscar un dato por columna
+    public static function FindColumnArr($colum, $valorColum)
+    {
+
+        $query = "SELECT * FROM " . static::$table . " WHERE $colum = '$valorColum' ORDER BY id DESC";
+        $stmt = self::$db->query($query);
+
+        //enviar objeto de la respuesta
+        return $stmt->fetch_object();
+
+        //cerrar 
+        $stmt->close();
+
+        //limpiar objeto
+        $stmt->null;
+    }
+
     //recibe los datos de controller
     public static function find($id)
     {

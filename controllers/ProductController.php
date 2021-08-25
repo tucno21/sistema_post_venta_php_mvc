@@ -23,6 +23,22 @@ class ProductController
         $errores = [];
         $categorias = Categories::All();
 
+        // $obj = array();
+
+        // foreach ($categorias as $category) {
+        //     $colum = 'categoryId';
+        //     $valorColum = $category->id;
+        //     $obj1 = Products::FindColumnArr($colum, $valorColum);
+        //     array_push($obj, $obj1);
+        // }
+        // $array = json_decode(json_encode($obj), true);
+
+        // $found_key = $array[array_search('2', array_column($array, 'categoryId'))];
+        // // $found_key = $people[1];
+
+        // debuguear($found_key['code']);
+
+
         $router->render('productos/crear', [
             'errores' => $errores,
             'categorias' => $categorias,
