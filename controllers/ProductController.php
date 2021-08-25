@@ -243,7 +243,7 @@ class ProductController
             //variable imagen
             $imagen = "<img src='../imagenes/" . $products[$i]->image . "' alt='avatar' class='img-thumbnail' width='40px'>";
             //variable botones
-            $botones = "<div class='btn-group'><a class='btn btn-warning' href='/productos/actualizar?id=" . $products[$i]->id . "'><i class='fa fa-edit'></i></a><a class='btn btn-danger avisoAlertaxx' href='/productos/eliminar?id=" . $products[$i]->id . "&tipo=product'><i class='fa fa-times'></i></a></div>";
+            $botones = "<div class='btn-group'><a class='btn btn-warning' href='/productos/actualizar?id=" . $products[$i]->id . "'><i class='fa fa-edit'></i></a><a class='btn btn-danger avisoAlertaProducto' href='/productos/eliminar?id=" . $products[$i]->id . "&tipo=product'><i class='fa fa-times'></i></a></div>";
             //variable color para la stock de product
             if ($products[$i]->stock <= 10) {
                 $stock = "<button class='btn btn-danger'>" . $products[$i]->stock . "</button>";
