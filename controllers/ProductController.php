@@ -204,6 +204,33 @@ class ProductController
         ]);
     }
 
+    public static function eliminar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $id = $_GET['id'];
+            //validar que el id sea entero
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if ($id) {
+                //verificar sea tipo usuario
+                $tipo = $_GET['tipo'];
+                if (validarTipoContenido($tipo)) {
+                    //traer los datos del ID
+                    $product = Products::find($id);
+                    //y si existe el arrchivo
+                    $existeAchivo = file_exists(CARPETA_IMAGENES . $product->image);
+                    if ($existeAchivo) {
+                        unlink(CARPETA_IMAGENES . $product->image);
+                    }
+                    $respuesta = Products::delete($id);
+                    if ($respuesta == "ok") {
+                        header('Location: /productos');
+                    }
+                }
+            }
+        }
+    }
+
     public static function lista()
     {
 
