@@ -214,7 +214,7 @@ class ProductController
 
         for ($i = 0; $i < count($products); $i++) {
             //variable imagen
-            $imagen = "<img src='" . $products[$i]->image . "' alt='avatar' class='img-thumbnail' width='40px'>";
+            $imagen = "<img src='../imagenes/" . $products[$i]->image . "' alt='avatar' class='img-thumbnail' width='40px'>";
             //variable botones
             $botones = "<div class='btn-group'><a class='btn btn-warning' href='/productos/actualizar?id=" . $products[$i]->id . "'><i class='fa fa-edit'></i></a><a class='btn btn-danger avisoAlertaxx' href='/productos/eliminar?id=" . $products[$i]->id . "&tipo=product'><i class='fa fa-times'></i></a></div>";
             //variable color para la stock de product
