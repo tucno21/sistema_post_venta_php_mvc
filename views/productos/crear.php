@@ -40,7 +40,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-money-check"></i></spam>
                             </div>
-                            <select class="form-control input-lg" name="product[profile]">
+                            <select class="form-control input-lg nuevaCategoria" name="product[profile]">
                                 <option value="">Seleccione Categoria</option>
                                 <?php foreach ($categorias as $category) : ?>
                                     <option value="<?php echo $category->id; ?>"><?php echo $category->category; ?></option>
@@ -54,7 +54,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-code"></i></spam>
                             </div>
-                            <input type="number" class="form-control input-lg" name="product[name]" placeholder="Ingresar Código" required>
+                            <input type="number" class="form-control input-lg" id="nuevoCodigo" name="product[name]" placeholder="Ingresar Código" readonly required>
                         </div>
                     </div>
                     <!-- DESCRIPCION -->

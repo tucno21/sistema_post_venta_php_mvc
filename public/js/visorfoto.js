@@ -78,6 +78,33 @@ $(".avisoAlertaxx").on("click", function(event){
 //         }
 //     });
 // }
+//AGREGANDO nuevo codigo dependiente de la categoria
+$(".nuevaCategoria").change(function(){
+    var valor = $(".nuevaCategoria").val();
+    // console.log(valor);
+
+    $.ajax({
+        method: "GET",
+        url: "/productos/buscar",
+        dataType: "json",
+        success: function(res){
+            var buscar = res[valor - 1];
+
+            if(!buscar){
+                var nuevoCodigo = valor + "01";
+                $("#nuevoCodigo").val(nuevoCodigo);
+            }else{
+                var codigo = buscar["code"];
+                var nuevoCodigo = Number(codigo) + 1;
+    
+                // $("#nuevoCodigo").val(nuevoCodigo);
+            }
+            // console.log("nuevoCodigo", buscar);
+        }
+    })
+
+})
+
 //AGREGANDO PRECIO DE VENTA EN FUNCION al PRECIO DE VENTA
 $("#precioCompra").change(function() {
 

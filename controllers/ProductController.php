@@ -18,6 +18,40 @@ class ProductController
         ]);
     }
 
+    public static function buscar(Router $router)
+    {
+        $obj = array();
+        $categorias = Categories::All();
+        foreach ($categorias as $category) {
+            $colum = 'categoryId';
+            $valorColum = $category->id;
+            $obj1 = Products::FindColumnArr($colum, $valorColum);
+            array_push($obj, $obj1);
+        }
+        // debuguear($obj);
+        // $datosJSON = '{
+        //     "data": [';
+
+        // for ($i = 0; $i < count($obj); $i++) {
+
+        //     $category = $obj[$i]->categoryId ?? "0";
+        //     $code = $obj[$i]->code ?? "0";
+        //     //variable imagen
+        //     $datosJSON .= '[
+        //                 "' . $category . '",
+        //                 "' . $code . '"
+        //             ],';
+        // }
+        // $datosJSON = substr($datosJSON, 0, -1);
+        // $datosJSON .= '
+        //             ]
+        //         }';
+
+        // echo $datosJSON;
+        echo json_encode($obj);
+        // debuguear($obj);
+    }
+
     public static function crear(Router $router)
     {
         $errores = [];
@@ -38,7 +72,6 @@ class ProductController
 
         // debuguear($found_key['code']);
 
-
         $router->render('productos/crear', [
             'errores' => $errores,
             'categorias' => $categorias,
@@ -49,7 +82,7 @@ class ProductController
     {
 
         $products = Products::AllProdCategory();
-
+        // debuguear($products);
         $datosJSON = '{
             "data": [';
 
