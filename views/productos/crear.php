@@ -36,11 +36,10 @@
                     <!-- CATEGORIA -->
                     <div class="form-group">
                         <div class="input-group">
-                            <form method="POST"></form>
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-money-check"></i></spam>
                             </div>
-                            <select class="form-control input-lg nuevaCategoria" name="product[profile]">
+                            <select class="form-control input-lg nuevaCategoria" name="product[categoryId]">
                                 <option value="">Seleccione Categoria</option>
                                 <?php foreach ($categorias as $category) : ?>
                                     <option value="<?php echo $category->id; ?>"><?php echo $category->category; ?></option>
@@ -54,7 +53,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-code"></i></spam>
                             </div>
-                            <input type="number" class="form-control input-lg" id="nuevoCodigo" name="product[name]" placeholder="Ingresar Código" readonly required>
+                            <input type="number" class="form-control input-lg" id="nuevoCodigo" name="product[code]" placeholder="Ingresar Código" readonly required>
                         </div>
                     </div>
                     <!-- DESCRIPCION -->
@@ -63,7 +62,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-file-alt"></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="product[username]" placeholder="Ingresar Descripción" required>
+                            <input type="text" class="form-control input-lg" name="product[description]" placeholder="Ingresar Descripción" required>
                         </div>
                     </div>
                     <!-- STOCK -->
@@ -72,7 +71,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-layer-group"></i></spam>
                             </div>
-                            <input type="number" class="form-control input-lg" name="product[password]" placeholder="stock" required>
+                            <input type="number" class="form-control input-lg" name="product[stock]" placeholder="stock" required>
                         </div>
                     </div>
                     <div class="form-group row row-cols-1 row-cols-md-2">
@@ -82,7 +81,7 @@
                                 <div class="input-group-prepend">
                                     <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                 </div>
-                                <input type="number" class="form-control input-lg" id="precioCompra" name="product[password]" placeholder="Precio de compra" required>
+                                <input type="number" class="form-control input-lg" id="precioCompra" name="product[price_buy]" placeholder="Precio de compra" required>
                             </div>
                         </div>
                         <div class="col mt-2">
@@ -91,7 +90,7 @@
                                 <div class="input-group-prepend">
                                     <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
                                 </div>
-                                <input type="number" class="form-control input-lg" id="precioVenta" name="product[password]" placeholder="Precio de venta" required>
+                                <input type="number" class="form-control input-lg" id="precioVenta" name="product[price_sale]" placeholder="Precio de venta" required>
                             </div>
                             <div class=" mt-2 row row-cols-1 row-cols-md-2">
                                 <div class="col">
@@ -123,7 +122,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-image"></i></i></spam>
                             </div>
-                            <input type="file" name="product[photo]" id="imagen" class="visorFoto">
+                            <input type="file" name="product[image]" id="imagen" class="visorFoto">
                         </div>
                     </div>
                     <div class="form-group">

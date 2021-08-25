@@ -92,6 +92,7 @@ class Template
         $values = implode("', '", array_values($datos));
 
         $query = "INSERT INTO " . static::$table . "($columns) VALUES ('$values')";
+        // debuguear($query);
         $stmt = self::$db->query($query);
 
         if ($stmt) {

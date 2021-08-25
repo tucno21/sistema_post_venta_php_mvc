@@ -5,6 +5,7 @@ namespace Controllers;
 use MVC\Router;
 use Model\Products;
 use Model\Categories;
+use Intervention\Image\ImageManagerStatic as Imagex;
 
 class ProductController
 {
@@ -56,6 +57,61 @@ class ProductController
     {
         $errores = [];
         $categorias = Categories::All();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!$_POST['product']['categoryId']) {
+                array_push($errores, "la categoria es obligatorio");
+            }
+            if (!$_POST['product']['description']) {
+                array_push($errores, "el nombre del producto es obligatorio");
+            }
+            if (!$_POST['product']['stock']) {
+                array_push($errores, "el stock es obligatorio");
+            }
+            if (!$_POST['product']['price_buy']) {
+                array_push($errores, "el precio de compra es obligatorio");
+            }
+            if (!$_POST['product']['price_sale']) {
+                array_push($errores, "el precio de venta es obligatorio");
+            }
+            if (!$_FILES['product']['tmp_name']['image']) {
+                array_push($errores, "La imagen es obligatorio");
+            }
+            if (
+                preg_match('/^[0-9]+$/', $_POST['product']['categoryId']) &&
+                preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['product']['description']) &&
+                preg_match('/^[0-9]+$/', $_POST['product']['stock']) &&
+                preg_match('/^[0-9]+$/', $_POST['product']['price_buy']) &&
+                preg_match('/^[0-9]+$/', $_POST['product']['price_sale'])
+            ) {
+                if (empty($errores)) {
+                    //generar nombre unico para la imagen
+                    $nameImage = md5(uniqid(rand(), true)) . '.jpg';
+
+                    if ($_FILES['product']['tmp_name']['image']) {
+                        //modificar imagen
+                        $image = Imagex::make($_FILES['product']['tmp_name']['image'])->fit(800, 600);
+                        //agregar al array
+                        $_POST['product']['image'] = $nameImage;
+                    }
+
+                    if (!is_dir(CARPETA_IMAGENES)) {
+                        mkdir(CARPETA_IMAGENES);
+                    }
+                    $product = $_POST['product'];
+                    $respuesta = Products::Save($product);
+
+                    $image->save(CARPETA_IMAGENES . $nameImage);
+                    // debuguear($respuesta);
+
+                    if ($respuesta == "ok") {
+                        header('Location: /productos');
+                    }
+                }
+            } else {
+                array_push($errores, "Caracteres no admitidos, ingrese caracteres A-Z y/o 0-9");
+            }
+        }
 
         // $obj = array();
 
