@@ -96,8 +96,7 @@ $(".nuevaCategoria").change(function(){
             }else{
                 var codigo = buscar["code"];
                 var nuevoCodigo = Number(codigo) + 1;
-    
-                // $("#nuevoCodigo").val(nuevoCodigo);
+                $("#nuevoCodigo").val(nuevoCodigo);
             }
             // console.log("nuevoCodigo", buscar);
         }
