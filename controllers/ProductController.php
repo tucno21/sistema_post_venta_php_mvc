@@ -134,6 +134,76 @@ class ProductController
         ]);
     }
 
+    public static function actualizar(Router $router)
+    {
+        $errores = [];
+        $id = validarORedireccionar('/productos');
+        $valorColum = $id;
+        //busscar usuario y traer como objeto
+        $product = Products::find($valorColum);
+        $categorias = Categories::All();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!$_POST['product']['categoryId']) {
+                array_push($errores, "la categoria es obligatorio");
+            }
+            if (!$_POST['product']['description']) {
+                array_push($errores, "el nombre del producto es obligatorio");
+            }
+            if (!$_POST['product']['stock']) {
+                array_push($errores, "el stock es obligatorio");
+            }
+            if (!$_POST['product']['price_buy']) {
+                array_push($errores, "el precio de compra es obligatorio");
+            }
+            if (!$_POST['product']['price_sale']) {
+                array_push($errores, "el precio de venta es obligatorio");
+            }
+            if (
+                preg_match('/^[0-9]+$/', $_POST['product']['categoryId']) &&
+                preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['product']['description']) &&
+                preg_match('/^[0-9]+$/', $_POST['product']['stock']) &&
+                preg_match('/^[0-9]+$/', $_POST['product']['price_buy']) &&
+                preg_match('/^[0-9]+$/', $_POST['product']['price_sale'])
+            ) {
+                $args = $_POST['product'];
+                if ($_FILES['product']['tmp_name']['image']) {
+                    //modificar imagen
+                    $image = Imagex::make($_FILES['product']['tmp_name']['image'])->fit(800, 600);
+                    //crea un nombre aleatorio
+                    $nameImage = md5(uniqid(rand(), true)) . '.jpg';
+
+                    $existeAchivo = file_exists(CARPETA_IMAGENES . $product->image);
+                    if ($existeAchivo) {
+                        unlink(CARPETA_IMAGENES . $product->image);
+                    }
+                    //enviar nombre foto al array
+                    $args['image'] = $nameImage;
+                    //guardar server
+                    $image->save(CARPETA_IMAGENES . $nameImage);
+                }
+
+                // debuguear($args);
+                //eenviar el array y actualizar
+                $respuesta = Products::update($args, $id);
+
+                if ($respuesta == "ok") {
+                    header('Location: /productos');
+                }
+            } else {
+                array_push($errores, "Caracteres no admitidos, ingrese caracteres A-Z y/o 0-9");
+            }
+        }
+
+
+
+        $router->render('productos/actualizar', [
+            'product' => $product,
+            'errores' => $errores,
+            'categorias' => $categorias,
+        ]);
+    }
+
     public static function lista()
     {
 
