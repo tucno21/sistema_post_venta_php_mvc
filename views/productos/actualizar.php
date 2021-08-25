@@ -81,7 +81,7 @@
                                 <div class="input-group-prepend">
                                     <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                 </div>
-                                <input type="number" class="form-control input-lg" id="precioCompra" name="product[price_buy]" placeholder="Precio de compra" value='<?php echo $product->price_buy; ?>' required>
+                                <input type="number" class="form-control input-lg" id="precioCompra" name="product[price_buy]" placeholder="Precio de compra" min="0" step="any" value='<?php echo $product->price_buy; ?>' required>
                             </div>
                         </div>
                         <div class="col mt-2">
@@ -90,7 +90,7 @@
                                 <div class="input-group-prepend">
                                     <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
                                 </div>
-                                <input type="number" class="form-control input-lg" id="precioVenta" name="product[price_sale]" placeholder="Precio de venta" value='<?php echo $product->price_sale; ?>' required>
+                                <input type="number" class="form-control input-lg" id="precioVenta" name="product[price_sale]" placeholder="Precio de venta" min="0" step="any" value='<?php echo $product->price_sale; ?>' required>
                             </div>
                             <div class=" mt-2 row row-cols-1 row-cols-md-2">
                                 <div class="col">

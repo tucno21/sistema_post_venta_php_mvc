@@ -81,8 +81,8 @@ class ProductController
                 preg_match('/^[0-9]+$/', $_POST['product']['categoryId']) &&
                 preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['product']['description']) &&
                 preg_match('/^[0-9]+$/', $_POST['product']['stock']) &&
-                preg_match('/^[0-9]+$/', $_POST['product']['price_buy']) &&
-                preg_match('/^[0-9]+$/', $_POST['product']['price_sale'])
+                preg_match('/^[0-9.]+$/', $_POST['product']['price_buy']) &&
+                preg_match('/^[0-9.]+$/', $_POST['product']['price_sale'])
             ) {
                 if (empty($errores)) {
                     //generar nombre unico para la imagen
@@ -163,8 +163,8 @@ class ProductController
                 preg_match('/^[0-9]+$/', $_POST['product']['categoryId']) &&
                 preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['product']['description']) &&
                 preg_match('/^[0-9]+$/', $_POST['product']['stock']) &&
-                preg_match('/^[0-9]+$/', $_POST['product']['price_buy']) &&
-                preg_match('/^[0-9]+$/', $_POST['product']['price_sale'])
+                preg_match('/^[0-9.]+$/', $_POST['product']['price_buy']) &&
+                preg_match('/^[0-9.]+$/', $_POST['product']['price_sale'])
             ) {
                 $args = $_POST['product'];
                 if ($_FILES['product']['tmp_name']['image']) {
