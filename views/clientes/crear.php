@@ -57,7 +57,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-envelope"></i></spam>
                             </div>
-                            <input type="email" class="form-control input-lg" name="client[telephone]" placeholder="Ingresar email" required>
+                            <input type="email" class="form-control input-lg" name="client[email]" placeholder="Ingresar email" required>
                         </div>
                     </div>
                     <!-- TELEFONO -->
@@ -84,14 +84,14 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="far fa-calendar-alt"></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="client[date]" placeholder="Ingresar fecha de nacimiento" id="datemask" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask required>
+                            <input type="text" class="form-control input-lg" name="client[date_birth]" placeholder="Ingresar fecha de nacimiento" id="datemask" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask required>
                         </div>
                     </div>
 
 
                 </div>
                 <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary btn-lg">Crear</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Guardar Cliente</button>
                 </div>
             </form>
         </div>

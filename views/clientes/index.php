@@ -37,25 +37,26 @@
                     </thead>
 
                     <tbody>
+                        <?php foreach ($clients as $client) : ?>
+                            <tr>
+                                <td><?php echo $client->id; ?></td>
+                                <td><?php echo $client->name; ?></td>
+                                <td><?php echo $client->dni; ?></td>
+                                <td><?php echo $client->email; ?></td>
+                                <td><?php echo $client->telephone; ?></td>
+                                <td><?php echo $client->direction; ?></td>
+                                <td><?php echo $client->date_birth; ?></td>
+                                <td><?php echo $client->sales; ?></td>
+                                <td><?php echo $client->registration_date; ?></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" href="/clientes/actualizar?id=<?php echo $client->id; ?>"><i class="fa fa-edit"></i></a>
 
-                        <tr>
-                            <td>1</td>
-                            <td>carlos</td>
-                            <td>42769197</td>
-                            <td>correo@correo.com</td>
-                            <td>966943572</td>
-                            <td>av san jose 214</td>
-                            <td>20/10/2021</td>
-                            <td>15</td>
-                            <td>2021-15-16</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-warning" href="/clientes/actualizar?id=1"><i class="fa fa-edit"></i></a>
-
-                                    <a class="btn btn-danger avisoAlertaxx" href="/clientes/eliminar?id=1&tipo=user"><i class="fa fa-times"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                                        <a class="btn btn-danger avisoAlertaxx" href="/clientes/eliminar?id=<?php echo $client->id; ?>&tipo=client"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
