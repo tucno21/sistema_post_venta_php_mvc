@@ -48,7 +48,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="far fa-id-card"></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="client[dni]" placeholder="Ingresar DNI" required>
+                            <input type="text" class="form-control input-lg" name="client[dni]" placeholder="Ingresar DNI" data-inputmask="'mask':'99999999'" data-mask required>
                         </div>
                     </div>
                     <!-- EMAIL -->
@@ -66,7 +66,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fas fa-phone"></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="client[telephone]" placeholder="Ingresar el telefono" required>
+                            <input type="text" class="form-control input-lg" name="client[telephone]" placeholder="Ingresar el telefono" data-inputmask="'mask':'999-999-999'" data-mask required>
                         </div>
                     </div>
                     <!-- DIRECCION -->
@@ -84,7 +84,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="far fa-calendar-alt"></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="client[date]" placeholder="Ingresar fecha de nacimiento" required>
+                            <input type="text" class="form-control input-lg" name="client[date]" placeholder="Ingresar fecha de nacimiento" id="datemask" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy/mm/dd" data-mask required>
                         </div>
                     </div>
 

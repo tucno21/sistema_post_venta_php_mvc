@@ -156,3 +156,12 @@ $("#ventaporcentaje").on("click", function() {
         $("#precioVenta").prop("readonly", false);
     
 });
+
+
+//mascara de los imputs
+//Datemask dd/mm/yyyy
+$('#datemask').inputmask('yyyy/mm/dd', { 'placeholder': 'yyyy/mm/dd' })
+//Datemask2 mm/dd/yyyy
+$('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+//Money Euro
+$('[data-mask]').inputmask()
