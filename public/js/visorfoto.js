@@ -78,3 +78,34 @@ $(".avisoAlertaxx").on("click", function(event){
 //         }
 //     });
 // }
+//AGREGANDO PRECIO DE VENTA EN FUNCION al PRECIO DE VENTA
+$("#precioCompra").change(function() {
+
+    if($("#ventaporcentaje").prop("checked")){
+        var valorCompra = $("#precioCompra").val();
+        var valorPorcentaje = $("#valorPorcentaje").val();
+    
+        var resultado = Number(valorCompra * valorPorcentaje / 100) + Number(valorCompra);
+    
+        $("#precioVenta").val(resultado);
+        $("#precioVenta").prop("readonly", true);
+    }
+})
+//AGREGANDO PRECIO DE VENTA EN FUNCION al al PORCENTAJE
+$("#valorPorcentaje").change(function() {
+    if($(".ventaporcentaje").prop('checked', true)){
+        var valorCompra = $("#precioCompra").val();
+        var valorPorcentaje = $("#valorPorcentaje").val();
+    
+        var resultado = Number(valorCompra * valorPorcentaje / 100) + Number(valorCompra);
+    
+        $("#precioVenta").val(resultado);
+        $("#precioVenta").prop("readonly", true);
+    }
+})
+//cuando checked esta DESBLOQUEDO 
+$("#ventaporcentaje").on("click", function() {
+
+        $("#precioVenta").prop("readonly", false);
+    
+});

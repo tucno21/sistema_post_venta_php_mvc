@@ -82,7 +82,7 @@
                                 <div class="input-group-prepend">
                                     <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                 </div>
-                                <input type="number" class="form-control input-lg" name="product[password]" placeholder="Precio de compra" required>
+                                <input type="number" class="form-control input-lg" id="precioCompra" name="product[password]" placeholder="Precio de compra" required>
                             </div>
                         </div>
                         <div class="col mt-2">
@@ -91,13 +91,13 @@
                                 <div class="input-group-prepend">
                                     <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
                                 </div>
-                                <input type="number" class="form-control input-lg" name="product[password]" placeholder="Precio de venta" required>
+                                <input type="number" class="form-control input-lg" id="precioVenta" name="product[password]" placeholder="Precio de venta" required>
                             </div>
                             <div class=" mt-2 row row-cols-1 row-cols-md-2">
                                 <div class="col">
                                     <div class="form-group">
                                         <div class="icheck-primary">
-                                            <input type="checkbox" class="porcentaje" id="ventaporcentaje" checked>
+                                            <input type="checkbox" class="ventaporcentaje" id="ventaporcentaje" checked>
                                             <label for="ventaporcentaje">Utilizar porcentaje
                                             </label>
                                         </div>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="input-group">
-                                        <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
+                                        <input type="number" id="valorPorcentaje" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
                                         <div class="input-group-prepend">
                                             <spam class="input-group-text"><i class="fas fa-percent"></i></spam>
                                         </div>
