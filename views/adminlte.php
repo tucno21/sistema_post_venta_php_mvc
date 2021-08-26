@@ -82,7 +82,7 @@ $linksSidebar = [
             ],
             [
                 'text' => 'Crear ventas',
-                'url'  => '/crear-ventas',
+                'url'  => '/ventas/crear',
                 'icon' => 'far fa-plus-square',
             ],
             [

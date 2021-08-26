@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../include/app.php';
 
 use MVC\Router;
+use Controllers\SaleController;
 use Controllers\UserController;
 use Controllers\LoginController;
 use Controllers\ClientController;
@@ -55,6 +56,14 @@ $router->post('/clientes/crear', [ClientController::class, "crear"]);
 $router->get('/clientes/actualizar', [ClientController::class, "actualizar"]);
 $router->post('/clientes/actualizar', [ClientController::class, "actualizar"]);
 $router->get('/clientes/eliminar', [ClientController::class, "eliminar"]);
+
+// //CRUD VENTAS
+$router->get('/ventas', [SaleController::class, "index"]);
+$router->get('/ventas/crear', [SaleController::class, "crear"]);
+$router->post('/ventas/crear', [SaleController::class, "crear"]);
+$router->get('/ventas/actualizar', [SaleController::class, "actualizar"]);
+$router->post('/ventas/actualizar', [SaleController::class, "actualizar"]);
+$router->get('/ventas/eliminar', [SaleController::class, "eliminar"]);
 
 //lamando el metodo de ruter
 $router->comprobarRutas();
