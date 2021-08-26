@@ -51,7 +51,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     </div>
                                     <input type="text" class="form-control" value="<?php echo  $_SESSION['name']; ?>" readonly>
 
-                                    <input type="hidden" name="ventas[sellerId]" value="<?php echo ($_SESSION["id"]); ?>">
+                                    <input type="hidden" name="sales[sellerId]" value="<?php echo ($_SESSION["id"]); ?>">
 
                                 </div>
                             </div>
@@ -61,7 +61,11 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <div class="input-group-prepend">
                                         <spam class="input-group-text"><i class="fas fa-key"></i></spam>
                                     </div>
-                                    <input type="text" class="form-control" name="ventas[factura]" value="10000001" readonly>
+                                    <?php if (!$Ultima_venta) : ?>
+                                        <input type="text" class="form-control" name="ventas[factura]" value="10000001" readonly>
+                                    <?php else : ?>
+                                        <input type="text" class="form-control" name="ventas[factura]" value="<?php echo $Ultima_venta->sale_code + 1; ?>" readonly>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <!-- CLIENTE -->
@@ -72,8 +76,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                     </div>
                                     <select class="form-control input-lg nuevaCategoria" name="ventas[cliente]">
                                         <option value="">Seleccione Cliente</option>
-                                        <option value="1">jose</option>
-                                        <option value="2">pedro</option>
+                                        <?php foreach ($clientes as $client) : ?>
+                                            <option value="<?php echo $client->id; ?>"><?php echo $client->name; ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                     <div class="input-group-prepend">
                                         <spam class="input-group-text">
@@ -242,8 +247,19 @@ if (session_status() == PHP_SESSION_NONE) {
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form method="POST">
+            <form method="POST">
+                <?php
+                if (isset($errorCliente)) {
+                    foreach ($errorCliente as $errorClient) :
+                ?>
+                        <div class="alert alert-danger">
+                            <?php echo $errorClient; ?>
+                        </div>
+                <?php
+                    endforeach;
+                }
+                ?>
+                <div class="modal-body">
                     <!-- NOMBRE -->
                     <div class="form-group">
                         <div class="input-group">
@@ -300,12 +316,12 @@ if (session_status() == PHP_SESSION_NONE) {
                     </div>
 
 
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Guardar</button>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
         </div>
         <!-- /.modal-content -->
     </div>

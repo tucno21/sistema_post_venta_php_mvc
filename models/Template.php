@@ -86,6 +86,23 @@ class Template
         $stmt->null;
     }
 
+    //debueelve el ultimo arreglo
+    public static function LastRecord()
+    {
+        $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC";
+
+        $stmt = self::$db->query($query);
+        //Pasar todos los datos a arreglo asociativo
+        $mi_objeto = mysqli_fetch_assoc($stmt);
+        //enviar objeto de la respuesta
+        return $mi_objeto;
+        //cerrar 
+        $stmt->close();
+
+        //limpiar objeto
+        $stmt->null;
+    }
+
     public static function Save($datos)
     {
         $columns = implode(", ", array_keys($datos));
