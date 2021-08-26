@@ -57,9 +57,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer">
-                FOOTER
-            </div>
         </div>
 
 

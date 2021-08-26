@@ -34,6 +34,7 @@ class LoginController
                             if ($respuesta->estado == 1) {
                                 session_start();
                                 $_SESSION["iniciarSesion"] = "ok";
+                                $_SESSION['id'] = $respuesta->id;
                                 $_SESSION['name'] = $respuesta->name;
                                 $_SESSION['profile'] = $respuesta->profile;
                                 $_SESSION['photo'] = $respuesta->photo;

@@ -1,3 +1,10 @@
+<?php
+error_reporting(error_reporting() & ~E_NOTICE);
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,7 +49,10 @@
                                     <div class="input-group-prepend">
                                         <spam class="input-group-text"><i class="fas fa-user"></i></spam>
                                     </div>
-                                    <input type="text" class="form-control" name="ventas[vendedor]" value="Usuario vendedor" readonly>
+                                    <input type="text" class="form-control" value="<?php echo  $_SESSION['name']; ?>" readonly>
+
+                                    <input type="hidden" name="ventas[sellerId]" value="<?php echo ($_SESSION["id"]); ?>">
+
                                 </div>
                             </div>
                             <!-- ENTRADA de FACTURA -->
