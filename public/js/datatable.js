@@ -211,7 +211,7 @@ $(".tablaDataTable").DataTable({
 //         console.log("response", response);
 //     }
 // })
-
+//tabla para  mostrar productos de PRODUCTOS
 $('.tablaProductos').DataTable( {
     "ajax": "/productos/lista",
     //para optimizar la web
@@ -424,3 +424,4 @@ $('.tablaProductos').DataTable( {
         "info": "Mostrando _START_ a _END_ de _TOTAL_ registros"
     } 
 } );
+

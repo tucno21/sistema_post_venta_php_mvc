@@ -24,6 +24,7 @@
 
 <!-- MOD PERSONAL -->
 <script src="../js/datatable.js"></script>
+<script src="../js/datatableventas.js"></script>
 </body>
 
 </html>

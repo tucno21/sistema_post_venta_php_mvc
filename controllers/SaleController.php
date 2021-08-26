@@ -5,6 +5,7 @@ namespace Controllers;
 use MVC\Router;
 use Model\Sales;
 use Model\Clients;
+use Model\Products;
 
 class SaleController
 {
@@ -78,5 +79,43 @@ class SaleController
             'clientes' => $clientes,
             'errorCliente' => $errorCliente,
         ]);
+    }
+
+
+    public static function lista()
+    {
+
+        $products = Products::AllProdCategory();
+        // debuguear($products);
+        $datosJSON = '{
+            "data": [';
+
+        for ($i = 0; $i < count($products); $i++) {
+            //variable imagen
+            $imagen = "<img src='../imagenes/" . $products[$i]->image . "' alt='avatar' class='img-thumbnail' width='40px'>";
+            //variable botones
+            $botones = "<div class='btn-group'><button class='btn btn-primary agreagarProducto recuperarBoton' idProducto='" . $products[$i]->id . "'>Agregar</button></div>";
+            //variable color para la stock de product
+            if ($products[$i]->stock <= 10) {
+                $stock = "<button class='btn btn-danger'>" . $products[$i]->stock . "</button>";
+            } else {
+                $stock = "<button class='btn btn-success'>" . $products[$i]->stock . "</button>";
+            }
+
+            $datosJSON .= '[
+                    "' . ($i + 1) . '",
+                    "' . $imagen . '",
+                    "' . $products[$i]->code . '",
+                    "' . $products[$i]->description . '",
+                    "' . $stock . '",
+                    "' . $botones . '"
+                ],';
+        }
+        $datosJSON = substr($datosJSON, 0, -1);
+        $datosJSON .= '
+                ]
+            }';
+
+        echo $datosJSON;
     }
 }

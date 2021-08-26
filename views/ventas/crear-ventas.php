@@ -189,13 +189,13 @@ if (session_status() == PHP_SESSION_NONE) {
                 </div>
             </div>
             <!-- //tabla de productos -->
-            <div class="col-md-auto d-none d-sm-none d-md-block">
+            <div class="col-lg-7 d-none d-sm-none d-md-block">
                 <div class="card card-warning">
                     <div class="card-header">
 
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-striped dtr-inline dt-responsive tablaDataTable">
+                        <table class="table table-bordered table-striped dtr-inline dt-responsive tablaProductosVentas">
                             <thead>
                                 <tr>
                                     <th style="width: 10px;">N°</th>
@@ -207,21 +207,6 @@ if (session_status() == PHP_SESSION_NONE) {
                                 </tr>
                             </thead>
 
-                            <tbody>
-
-                                <tr>
-                                    <td>1</td>
-                                    <td><img src="/loco.jpg" alt=""></td>
-                                    <td>000001</td>
-                                    <td>martillo</td>
-                                    <th>20</th>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="ventas/actualizar?id=1">Agregar</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                     <!-- <div class="card-footer">
