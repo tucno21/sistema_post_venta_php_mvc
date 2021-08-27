@@ -10,7 +10,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="mb-2 row">
                 <div class="col-sm-6">
                     <h1>Generar Venta</h1>
                 </div>
@@ -51,7 +51,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     </div>
                                     <input type="text" class="form-control" value="<?php echo  $_SESSION['name']; ?>" readonly>
 
-                                    <input type="hidden" name="sales[sellerId]" value="<?php echo ($_SESSION["id"]); ?>">
+                                    <input type="hidden" name="ventas[sellerId]" value="<?php echo ($_SESSION["id"]); ?>">
 
                                 </div>
                             </div>
@@ -62,9 +62,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                         <spam class="input-group-text"><i class="fas fa-key"></i></spam>
                                     </div>
                                     <?php if (!$Ultima_venta) : ?>
-                                        <input type="text" class="form-control" name="ventas[factura]" value="10000001" readonly>
+                                        <input type="text" class="form-control" name="ventas[sale_code]" value="10000001" readonly>
                                     <?php else : ?>
-                                        <input type="text" class="form-control" name="ventas[factura]" value="<?php echo $Ultima_venta->sale_code + 1; ?>" readonly>
+                                        <input type="text" class="form-control" name="ventas[sale_code]" value="<?php echo $Ultima_venta->sale_code + 1; ?>" readonly>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <div class="input-group-prepend">
                                         <spam class="input-group-text"><i class="fas fa-users"></i></spam>
                                     </div>
-                                    <select class="form-control input-lg nuevaCategoria" name="ventas[cliente]">
+                                    <select class="form-control input-lg nuevaCategoria" name="ventas[clientId]">
                                         <option value="">Seleccione Cliente</option>
                                         <?php foreach ($clientes as $client) : ?>
                                             <option value="<?php echo $client->id; ?>"><?php echo $client->name; ?></option>
@@ -121,7 +121,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                 </div>
                             </div>
                             <!-- FIN BLOQUE DE IMPUTS -->
-                            <button type="button" class="btn btn-default d-block d-sm-block d-md-none">Agregar Producto</button>
+                            <!-- <button type="button" class="btn btn-default d-block d-sm-block d-md-none">Agregar Producto</button> -->
 
                             <!-- IMPUESTO Y EL TOTAL -->
                             <div class="row">
@@ -133,7 +133,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <div class="form-group">
                                         <label for="">Impuesto</label>
                                         <div class="input-group">
-                                            <input type="number" class="form-control impuestoTotalVentas" name="ventas[impuesto]" placeholder="0" min="0" required>
+                                            <input type="number" class="form-control impuestoTotalVentas" placeholder="0" min="0" required>
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-percent"></i></spam>
                                             </div>
@@ -149,7 +149,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                             </div>
                                             <input type="text" class="form-control totalVentasProducto" name="ventas[total]" totalVenta="" placeholder="0" min="0" readonly required>
                                             <input type="hidden" name="ventas[tax_result]" class="soloImpuesto">
-                                            <input type="hidden" ame="ventas[net]" class="precioSinImpuesto">
+                                            <input type="hidden" name="ventas[net]" class="precioSinImpuesto">
                                         </div>
                                     </div>
                                 </div>
@@ -192,7 +192,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success float-right">Guardar Venta</button>
+                            <button type="submit" class="float-right btn btn-success">Guardar Venta</button>
                         </div>
                     </form>
                 </div>

@@ -259,7 +259,7 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
                         '<div class="input-group-prepend">'+
                             '<spam class="input-group-text"><button type="button" class="btn btn-danger btn-xs eliminarListaProducto" productiId="'+productoId+'"><i class="fas fa-times"></i></button></spam>'+
                         '</div>'+
-                        '<input type="text" class="form-control" name="ventas[description]" placeholder="Descripción del producto" value="'+description+'" readonly required>'+
+                        '<input type="text" class="form-control" name="ventas[products]" placeholder="Descripción del producto" value="'+description+'" readonly required>'+
                     '</div>'+
                 '</div>'+
                 '<!-- CANTIDAD DE PRODUCTO -->'+
@@ -274,7 +274,7 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
                         '<div class="input-group-prepend">'+
                             '<spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>'+
                         '</div>'+
-                        '<input type="text" class="form-control ModprecioVentaProducto" name="ventas[precio]" value="'+precio+'" precioReal="'+precio+'"  min="1" readonly required>'+
+                        '<input type="text" class="form-control ModprecioVentaProducto" value="'+precio+'" precioReal="'+precio+'"  min="1" readonly required>'+
                     '</div>'+
                 '</div>'+
                 '</div>'

@@ -28,7 +28,7 @@ class SaleController
         $clientes = Clients::All();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if ($_POST['client']) {
+            if (isset($_POST['client'])) {
                 if (!$_POST['client']['name']) {
                     array_push($errorCliente, "El nobre es obligatorio");
                 }
@@ -76,6 +76,10 @@ class SaleController
                 } else {
                     array_push($errorCliente, "Caracteres no admitidos, ingrese caracteres A-Z y/o 0-9");
                 }
+            }
+
+            if ($_POST['ventas']) {
+                debuguear($_POST['ventas']);
             }
         }
         // debuguear($clientes);
