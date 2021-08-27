@@ -80,16 +80,24 @@ class SaleController
 
             if (isset($_POST['ventas'])) {
 
-                //ACTUALIZAR PRODUCTOS
+                // ACTUALIZAR PRODUCTOS
                 $productosComprados = json_decode($_POST['ventas']['products']);
+
+                $compras = 0;
                 foreach ($productosComprados as $product) {
                     $id = $product->id;
                     $compareproducto = Products::find($id);
                     $ventaMas = $compareproducto->sales + 1;
                     $array = ["stock" => $product->stock, "sales" => $ventaMas];
                     $respuesta = Products::update($array, $id);
+                    $compras++;
                 }
-
+                // ACTUALIZAR CLIENTES
+                $id = $_POST['ventas']['clientId'];
+                $compareCliente = Clients::find($id);
+                $ventaMas = $compareCliente->sales + $compras;
+                $array = ["sales" => $ventaMas];
+                $respuesta = Clients::update($array, $id);
 
                 debuguear($respuesta);
             }
