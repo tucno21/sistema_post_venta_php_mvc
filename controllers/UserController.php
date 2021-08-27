@@ -26,7 +26,7 @@ class UserController
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if (!$_POST['user']['name']) {
+            if (!$_POST['user']['name_u']) {
                 array_push($errores, "El nombre es obligatorio");
             }
             if (!$_POST['user']['username']) {
@@ -42,7 +42,7 @@ class UserController
                 array_push($errores, "La foto es obligatorio");
             }
             if (
-                preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['user']['name']) &&
+                preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['user']['name_u']) &&
                 preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['username']) &&
                 preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['password'])
             ) {
@@ -106,7 +106,7 @@ class UserController
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if (!$_POST['user']['name']) {
+            if (!$_POST['user']['name_u']) {
                 array_push($errores, "El nombre es obligatorio");
             }
             if (!$_POST['user']['username']) {
@@ -119,7 +119,7 @@ class UserController
                 array_push($errores, "La categoria es obligatorio");
             }
             if (
-                preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['user']['name']) &&
+                preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['user']['name_u']) &&
                 preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['username']) &&
                 preg_match('/^[a-zA-z0-9]+$/', $_POST['user']['password'])
             ) {

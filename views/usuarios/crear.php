@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="mb-2 row">
                 <div class="col-sm-6">
                     <h1>Crear usuario</h1>
                 </div>
@@ -14,7 +14,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="card w-75 mx-auto">
+        <div class="mx-auto card w-75">
             <div class="card-header">
                 <a class="btn btn-secondary" href="/usuarios">Volver</a>
             </div>
@@ -38,7 +38,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fa fa-user"></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="user[name]" placeholder="Ingresar Nombre" required>
+                            <input type="text" class="form-control input-lg" name="user[name_u]" placeholder="Ingresar Nombre" required>
                         </div>
                     </div>
                     <!-- USUARIO -->
@@ -93,7 +93,7 @@
                     </div>
 
                 </div>
-                <div class="card-footer text-right">
+                <div class="text-right card-footer">
                     <button type="submit" class="btn btn-primary btn-lg">Agregar</button>
                 </div>
             </form>
