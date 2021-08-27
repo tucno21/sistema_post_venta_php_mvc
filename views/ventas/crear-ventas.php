@@ -133,7 +133,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <div class="form-group">
                                         <label for="">Impuesto</label>
                                         <div class="input-group">
-                                            <input type="number" class="form-control" name="ventas[impuesto]" placeholder="0" min="0" required>
+                                            <input type="number" class="form-control impuestoTotalVentas" name="ventas[impuesto]" placeholder="0" min="0" required>
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-percent"></i></spam>
                                             </div>
@@ -147,7 +147,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                             </div>
-                                            <input type="number" class="form-control totalVentasProducto" name="ventas[total]" placeholder="0" min="0" readonly required>
+                                            <input type="number" class="form-control totalVentasProducto" name="ventas[total]" totalVenta="" placeholder="0" min="0" readonly required>
+                                            <input type="hidden" name="ventas[tax_result]" class="soloImpuesto">
+                                            <input type="hidden" ame="ventas[net]" class="precioSinImpuesto">
                                         </div>
                                     </div>
                                 </div>

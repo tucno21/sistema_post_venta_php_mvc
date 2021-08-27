@@ -333,6 +333,8 @@ $(".formularioVenta").on("click", "button.eliminarListaProducto", function(e) {
 
     if($(".nuevoProductoventa").children().length == 0){
         $(".totalVentasProducto").val(0);
+        $(".totalVentasProducto").attr("totalVenta",0);
+        $(".precioSinImpuesto").val(0);
     }else{
         SumarTotalPrecios();
     }
@@ -376,8 +378,25 @@ function SumarTotalPrecios(){
     var sumaTotalPrecio = arraySumaPrecios.reduce(sumarArray);
 
     $(".totalVentasProducto").val(sumaTotalPrecio);
+    $(".totalVentasProducto").attr("totalVenta",sumaTotalPrecio);
+    $(".precioSinImpuesto").val(sumaTotalPrecio);
     
 
 
     // console.log(sumaTotalPrecio);
 }
+
+//AGREGAR IMPUESTO
+$(".formularioVenta").on("change", "input.impuestoTotalVentas", function(e) {
+    var porcentaje = $(this).val();
+
+    var preciobase = $(".totalVentasProducto").attr("totalVenta");
+
+    var cantImpuesto = (Number(preciobase)*Number(porcentaje)/100);
+    var precioFinalImpuesto = Number(cantImpuesto) + Number(preciobase);
+
+    $(".totalVentasProducto").val(precioFinalImpuesto);
+    $(".soloImpuesto").val(cantImpuesto);
+    $(".precioSinImpuesto").val(preciobase);
+
+})
