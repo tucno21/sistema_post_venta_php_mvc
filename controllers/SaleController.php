@@ -15,6 +15,12 @@ class SaleController
         $router->render('ventas/index', []);
     }
 
+    public static function buscar(Router $router)
+    {
+        $categorias = Products::All();
+        echo json_encode($categorias);
+    }
+
     public static function crear(Router $router)
     {
         $errorCliente = [];
@@ -94,7 +100,7 @@ class SaleController
             //variable imagen
             $imagen = "<img src='../imagenes/" . $products[$i]->image . "' alt='avatar' class='img-thumbnail' width='40px'>";
             //variable botones
-            $botones = "<div class='btn-group'><button class='btn btn-primary agreagarProducto recuperarBoton' idProducto='" . $products[$i]->id . "'>Agregar</button></div>";
+            $botones = "<div class='btn-group'><button class='btn btn-primary agreagarProducto recuperarBoton' productoId='" . $products[$i]->id . "'>Agregar</button></div>";
             //variable color para la stock de product
             if ($products[$i]->stock <= 10) {
                 $stock = "<button class='btn btn-danger'>" . $products[$i]->stock . "</button>";

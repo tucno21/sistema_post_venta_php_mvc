@@ -66,6 +66,7 @@ $router->post('/ventas/actualizar', [SaleController::class, "actualizar"]);
 $router->get('/ventas/eliminar', [SaleController::class, "eliminar"]);
 //creacion de JSON PARA productos index y acelerar la carga de HTML
 $router->get('/ventas/lista', [SaleController::class, "lista"]);
+$router->get('/ventas/buscar', [SaleController::class, "buscar"]);
 
 
 //lamando el metodo de ruter

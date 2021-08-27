@@ -211,3 +211,122 @@ $('.tablaProductosVentas').DataTable( {
         "info": "Mostrando _START_ a _END_ de _TOTAL_ registros"
     } 
 } );
+
+
+
+
+//agregar productos desde la tabla
+$(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function(e) {
+    var productoId = $(this).attr("productoId");
+
+    // console.log(productoId);
+    $(this).removeClass("btn-primary agreagarProducto");
+    $(this).addClass("btn-default");
+
+    // var datos = new FormData();
+    // datos.append("productoId", productoId);
+
+    $.ajax({
+        method: "GET",
+        url: "/ventas/buscar",
+        dataType: "json",
+        success: function(res){
+            var buscar = res[productoId - 1];
+            var description = buscar["description"]
+            var stock = buscar["stock"]
+            var precio = buscar["price_sale"];
+
+                /*=============================================
+                EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
+                =============================================*/
+
+            if(stock == 0){
+                Swal.fire({
+                        icon: 'error',
+                        title: 'No hay stock disponible',
+                        confirmButtonText: "¡Cerrar!"
+                    })
+                // $("button[productoId='"+productoId+"']").addClass("btn-primary agreagarProducto");
+                $("button.recuperarBoton[productoId='"+productoId+"']").addClass('btn-primary agreagarProducto');
+                return;
+            }
+
+            $(".nuevoProductoventa").append(
+                '<div class="row">'+
+                '<!-- DESCRIPCION DEL PRODUCTOS -->'+
+                '<div class="col-6" style="padding-right:0px">'+
+                    '<div class="input-group">'+
+                        '<div class="input-group-prepend">'+
+                            '<spam class="input-group-text"><button type="button" class="btn btn-danger btn-xs eliminarListaProducto" productiId="'+productoId+'"><i class="fas fa-times"></i></button></spam>'+
+                        '</div>'+
+                        '<input type="text" class="form-control" name="ventas[description]" placeholder="Descripción del producto" value="'+description+'" readonly required>'+
+                    '</div>'+
+                '</div>'+
+                '<!-- CANTIDAD DE PRODUCTO -->'+
+                '<div class="col-2 " style="padding-right:0px">'+
+                    '<div class="input-group">'+
+                        '<input type="number" class="form-control" min="1" placeholder="0" max="'+stock+'" required>'+
+                    '</div>'+
+                '</div>'+
+                '<!-- PRECIO DEL PRODUCTO -->'+
+                '<div class="col-4">'+
+                    '<div class="input-group">'+
+                        '<div class="input-group-prepend">'+
+                            '<spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>'+
+                        '</div>'+
+                        '<input type="number" class="form-control" name="ventas[precio]" value="'+precio+'"  min="1" readonly required>'+
+                    '</div>'+
+                '</div>'+
+                '</div>'
+            )
+
+            // console.log(description);
+            // console.log(precio);
+            // console.log(stock);
+        }
+    })
+})
+
+//cuando navege en la tabla de consulta se almacena en local storage
+$(".tablaProductosVentas").on("draw.dt", function(){
+    if(localStorage.getItem("eliminarListaProducto") !=  null){
+        var listaIdProducto = JSON.parse(localStorage.getItem("eliminarListaProducto"));
+
+        for(var i = 0; i < listaIdProducto.length; i++){
+            // console.log("hola")
+            // $("button.recuperarBoton").attr("productoId", productoId[i]).removeClass("btn-default");
+            // $("button.recuperarBoton").attr("productoId", productoId[i]).addClass("btn-primary agreagarProducto");
+            $("button.recuperarBoton[productoId='"+listaIdProducto[i]["productoId"]+"']").removeClass('btn-default');
+			$("button.recuperarBoton[productoId='"+listaIdProducto[i]["productoId"]+"']").addClass('btn-primary agreagarProducto');
+        }
+    }
+})
+
+var ideliminarListaProducto = [];
+localStorage.removeItem("eliminarListaProducto");
+
+//eliminar los productos de la lista de ventas
+$(".formularioVenta").on("click", "button.eliminarListaProducto", function(e) {
+    $(this).parent().parent().parent().parent().parent().remove();
+
+    var productoId = $(this).attr("productiId");
+
+    //ALMACENAR EL ID DEL PRODUCTO QUITADO EN LOCAL_STORAGE
+    if(localStorage.getItem("eliminarListaProducto") ==  null){
+        ideliminarListaProducto = [];
+
+    }else{
+        ideliminarListaProducto.concat(localStorage.getItem("eliminarListaProducto")) 
+    }
+    ideliminarListaProducto.push({"productoId": productoId})
+
+    localStorage.setItem("eliminarListaProducto", JSON.stringify(ideliminarListaProducto))
+
+    // console.log(productoId);
+
+    // $("button.recuperarBoton").attr("productoId", productoId).removeClass("btn-default");
+    // $("button.recuperarBoton").attr("productoId", productoId).addClass("btn-primary agreagarProducto");
+
+    $("button.recuperarBoton[productoId='"+productoId+"']").removeClass('btn-default');
+	$("button.recuperarBoton[productoId='"+productoId+"']").addClass('btn-primary agreagarProducto');
+})

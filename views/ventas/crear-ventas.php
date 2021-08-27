@@ -25,7 +25,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <!-- //el formulario -->
             <div class="col col-lg-5">
                 <div class="card card-success">
-                    <form method="POST">
+                    <form method="POST" class="formularioVenta">
                         <div class="card-header bg-success">
                         </div>
                         <div class="card-body">
@@ -92,8 +92,8 @@ if (session_status() == PHP_SESSION_NONE) {
                             <!-- ENTRADA de FACTURA -->
                             <!-- BLOQUE DE IMPUTS -->
                             <div class="form-group">
-                                <div class="row">
-                                    <!-- DESCRIPCION DEL PRODUCTOS -->
+                                <div class="row nuevoProductoventa">
+                                    <!-- DESCRIPCION DEL PRODUCTOS
                                     <div class="col-6" style="padding-right:0px">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -103,13 +103,13 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <input type="text" class="form-control" name="ventas[description]" placeholder="Descripción del producto" required>
                                         </div>
                                     </div>
-                                    <!-- CANTIDAD DE PRODUCTO -->
+                                    CANTIDAD DE PRODUCTO
                                     <div class="col-2 " style="padding-right:0px">
                                         <div class="input-group">
                                             <input type="number" class="form-control" name="ventas[cantidad]" min="1" placeholder="0" required>
                                         </div>
                                     </div>
-                                    <!-- PRECIO DEL PRODUCTO -->
+                                    PRECIO DEL PRODUCTO
                                     <div class="col-4">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -117,7 +117,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                             </div>
                                             <input type="number" class="form-control" name="ventas[precio]" placeholder="00000" min="1" readonly required>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <!-- FIN BLOQUE DE IMPUTS -->
