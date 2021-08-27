@@ -274,7 +274,7 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
                         '<div class="input-group-prepend">'+
                             '<spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>'+
                         '</div>'+
-                        '<input type="number" class="form-control ModprecioVentaProducto" name="ventas[precio]" value="'+precio+'" precioReal="'+precio+'"  min="1" readonly required>'+
+                        '<input type="text" class="form-control ModprecioVentaProducto" name="ventas[precio]" value="'+precio+'" precioReal="'+precio+'"  min="1" readonly required>'+
                     '</div>'+
                 '</div>'+
                 '</div>'
@@ -284,6 +284,10 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
             // console.log(precio);
             // console.log(stock);
             SumarTotalPrecios();
+
+            //cambiar formato a los precios imput
+            $(".ModprecioVentaProducto").number( true, 2 );
+            $(".totalVentasProducto").number( true, 2 );
         }
     })
 })
@@ -400,3 +404,4 @@ $(".formularioVenta").on("change", "input.impuestoTotalVentas", function(e) {
     $(".precioSinImpuesto").val(preciobase);
 
 })
+

@@ -11,6 +11,7 @@
 <!-- <script src="<?php echo $linkURL; ?>dist/js/demo.js"></script> -->
 <!-- AdminLTE App -->
 <script src="../js/visorfoto.js"></script>
+<script src="../js/jQueryNumber.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="<?php echo $linkURL; ?>plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo $linkURL; ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
