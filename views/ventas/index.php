@@ -36,24 +36,27 @@
                     </thead>
 
                     <tbody>
+                        <?php foreach ($ventas as $venta) : ?>
+                            <tr>
+                                <td><?php echo $venta->id; ?></td>
+                                <td><?php echo $venta->sale_code; ?></td>
+                                <td><?php echo $venta->name; ?></td>
+                                <td><?php echo $venta->name_u; ?></td>
+                                <td><?php echo $venta->payment_method; ?></td>
+                                <th><?php echo $venta->net; ?></th>
+                                <th><?php echo $venta->total; ?></th>
+                                <th><?php echo $venta->registration_date; ?></th>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" href="/ventas/actualizar?id=<?php echo $venta->id; ?>"><i class="fa fa-edit"></i></a>
 
-                        <tr>
-                            <td>1</td>
-                            <td>00001</td>
-                            <td>empresa</td>
-                            <td>carlos</td>
-                            <td>contado </td>
-                            <th>20</th>
-                            <th>200</th>
-                            <th>12/12/2021</th>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-info" href="ventas/actualizar?id=1"><i class="fa fa-print"></i></a>
+                                        <a class="btn btn-info" href="#"><i class="fa fa-print"></i></a>
 
-                                    <a class="btn btn-danger avisoAlertaxx" href="ventas/eliminar?id=1&tipo=user"><i class="fa fa-times"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                                        <a class="btn btn-danger avisoAlertaxx" href="/ventas/eliminar?id=1&tipo=user"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -11,8 +11,11 @@ class SaleController
 {
     public static function index(Router $router)
     {
-
-        $router->render('ventas/index', []);
+        $ventas = Sales::AllSales();
+        // debuguear($ventas);
+        $router->render('ventas/index', [
+            'ventas' => $ventas,
+        ]);
     }
 
     public static function buscar(Router $router)
