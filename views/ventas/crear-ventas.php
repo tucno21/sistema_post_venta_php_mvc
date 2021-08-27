@@ -163,13 +163,13 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
                                             </div>
-                                            <select class="form-control input-lg metodoTipoPago" name="ventas[payment_method]" required>
+                                            <select class="form-control input-lg metodoTipoPago" required>
                                                 <option value="">Seleccione Forma de pago</option>
                                                 <option value="efectivo">efectivo</option>
                                                 <option value="TC">tarjeta credito</option>
                                                 <option value="TD">tarjeta debito</option>
                                             </select>
-
+                                            <input type="hidden" class="listaMetodoPago" name="ventas[payment_method]">
                                         </div>
                                     </div>
                                 </div>

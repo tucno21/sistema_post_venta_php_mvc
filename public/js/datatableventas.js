@@ -367,7 +367,6 @@ $(".formularioVenta").on("change", "input.cantidadVentaProducto", function(e) {
 })
 
 //sumar todos los los precios
-
 function SumarTotalPrecios(){
     var precioItem = $(".ModprecioVentaProducto");
     var arraySumaPrecios = [];
@@ -433,12 +432,14 @@ $(".metodoTipoPago").change(function(){
 
         $(".entradaEfectivo").number( true, 2 );
         $(".salidaEfectivo").number( true, 2 );
+        //llamar a la funcion para agregar al post 
+        listarMetodos();
 
     }else if(metodo == "TC" || metodo == "TD"){
         // $(this).parent().parent().parent().parent().children(".cajasMetodoPago").remove();
         $(this).parent().parent().parent().parent().children(".cajasMetodoPago").html(
             '<div class="input-group">'+
-                '<input type="text" class="form-control" placeholder="Codigo de transacción" required>'+
+                '<input type="text" class="form-control registroTransaccion" placeholder="Codigo de transacción" required>'+
                 '<div class="input-group-prepend">'+
                     '<spam class="input-group-text"><i class="fas fa-lock"></i></spam>'+
                 '</div>'+
@@ -448,7 +449,13 @@ $(".metodoTipoPago").change(function(){
 
 })
 
+//ENTRA DE TRANSACCION
+$(".formularioVenta").on("change", "input.registroTransaccion", function(e) {
+    listarMetodos();
+})
 
+
+//ENTRA DE EFECTIVO Y EL VUELTO
 $(".formularioVenta").on("change", "input.entradaEfectivo", function(e) {
     var entradaEfectivo = $(this).val();
     if(Number(entradaEfectivo) > Number($(".totalVentasProducto").val())){
@@ -468,3 +475,19 @@ $(".formularioVenta").on("change", "input.entradaEfectivo", function(e) {
 
     
 })
+
+
+
+//FUNCION METODO DE PAGO
+function listarMetodos(){
+    var listaMetodos = "";
+    
+    if($(".metodoTipoPago").val() == "efectivo"){
+        listaMetodos = $(".metodoTipoPago").val();
+        $(".listaMetodoPago").val(listaMetodos);
+    }else{
+        listaMetodos = $(".metodoTipoPago").val();
+        nuevoMetodo = listaMetodos+"-"+$(".registroTransaccion").val();
+        $(".listaMetodoPago").val(nuevoMetodo);
+    }
+}
