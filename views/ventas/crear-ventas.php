@@ -122,7 +122,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             </div>
                             <!-- FIN BLOQUE DE IMPUTS -->
                             <!-- <button type="button" class="btn btn-default d-block d-sm-block d-md-none">Agregar Producto</button> -->
-
+                            <input type="hidden" name="ventas[products]" class="listaProductosVendidos">
                             <!-- IMPUESTO Y EL TOTAL -->
                             <div class="row">
                                 <div class="col-4">

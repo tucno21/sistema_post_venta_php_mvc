@@ -259,7 +259,7 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
                         '<div class="input-group-prepend">'+
                             '<spam class="input-group-text"><button type="button" class="btn btn-danger btn-xs eliminarListaProducto" productiId="'+productoId+'"><i class="fas fa-times"></i></button></spam>'+
                         '</div>'+
-                        '<input type="text" class="form-control" name="ventas[products]" placeholder="Descripción del producto" value="'+description+'" readonly required>'+
+                        '<input type="text" class="form-control descriptionProducto" ventaProductoId="'+productoId+'" value="'+description+'" readonly required>'+
                     '</div>'+
                 '</div>'+
                 '<!-- CANTIDAD DE PRODUCTO -->'+
@@ -284,6 +284,7 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
             // console.log(precio);
             // console.log(stock);
             SumarTotalPrecios();
+            listarProductos();
 
             //cambiar formato a los precios imput
             $(".ModprecioVentaProducto").number( true, 2 );
@@ -341,6 +342,7 @@ $(".formularioVenta").on("click", "button.eliminarListaProducto", function(e) {
         $(".precioSinImpuesto").val(0);
     }else{
         SumarTotalPrecios();
+        listarProductos();
     }
 })
 
@@ -356,6 +358,7 @@ $(".formularioVenta").on("change", "input.cantidadVentaProducto", function(e) {
         $(this).val(1)
         precio.val(precioReal);
         SumarTotalPrecios();
+        listarProductos()
         Swal.fire({
             icon: 'error',
             title: 'La cantidad supera el Stock disponible',
@@ -364,6 +367,7 @@ $(".formularioVenta").on("change", "input.cantidadVentaProducto", function(e) {
         })
     }
     SumarTotalPrecios();
+    listarProductos()
 })
 
 //sumar todos los los precios
@@ -434,6 +438,7 @@ $(".metodoTipoPago").change(function(){
         $(".salidaEfectivo").number( true, 2 );
         //llamar a la funcion para agregar al post 
         listarMetodos();
+        listarProductos();
 
     }else if(metodo == "TC" || metodo == "TD"){
         // $(this).parent().parent().parent().parent().children(".cajasMetodoPago").remove();
@@ -476,7 +481,31 @@ $(".formularioVenta").on("change", "input.entradaEfectivo", function(e) {
     
 })
 
+// LISTAR TODOS LOS PRODUCTOS
+function listarProductos(){
+    var listarProductos = [];
 
+    var description = $(".descriptionProducto");
+    var cantidad = $(".cantidadVentaProducto");
+    var precio = $(".ModprecioVentaProducto");
+
+    for(var i=0; i < description.length; i++){
+        listarProductos.push({
+            "id" : $(description[i]).attr("ventaProductoId"),
+            "description" : $(description[i]).val(),
+            "cantidad" : $(cantidad[i]).val(),
+            "stock" : Number($(cantidad[i]).attr("max")) - Number($(cantidad[i]).val()),
+            "precio" : $(precio[i]).attr("precioReal"),
+            "total" : $(precio[i]).val(),
+        });
+    }
+
+    // console.log(listarProductos);
+
+    var cadenaTexto = JSON.stringify(listarProductos);
+    $(".listaProductosVendidos").val(cadenaTexto);
+
+}
 
 //FUNCION METODO DE PAGO
 function listarMetodos(){
