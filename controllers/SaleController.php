@@ -78,8 +78,20 @@ class SaleController
                 }
             }
 
-            if ($_POST['ventas']) {
-                debuguear($_POST['ventas']);
+            if (isset($_POST['ventas'])) {
+
+                //ACTUALIZAR PRODUCTOS
+                $productosComprados = json_decode($_POST['ventas']['products']);
+                foreach ($productosComprados as $product) {
+                    $id = $product->id;
+                    $compareproducto = Products::find($id);
+                    $ventaMas = $compareproducto->sales + 1;
+                    $array = ["stock" => $product->stock, "sales" => $ventaMas];
+                    $respuesta = Products::update($array, $id);
+                }
+
+
+                debuguear($respuesta);
             }
         }
         // debuguear($clientes);
