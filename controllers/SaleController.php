@@ -29,6 +29,7 @@ class SaleController
         $errorCliente = [];
         $errores = [];
         $Ultima_venta = Sales::LastRecord();
+        // debuguear($Ultima_venta["sale_code"]);
         $clientes = Clients::All();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

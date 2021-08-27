@@ -64,7 +64,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <?php if (!$Ultima_venta) : ?>
                                         <input type="text" class="form-control" name="ventas[sale_code]" value="10000001" readonly>
                                     <?php else : ?>
-                                        <input type="text" class="form-control" name="ventas[sale_code]" value="<?php echo $Ultima_venta->sale_code + 1; ?>" readonly>
+                                        <input type="text" class="form-control" name="ventas[sale_code]" value="<?php echo $Ultima_venta["sale_code"] + 1; ?>" readonly>
                                     <?php endif; ?>
                                 </div>
                             </div>
