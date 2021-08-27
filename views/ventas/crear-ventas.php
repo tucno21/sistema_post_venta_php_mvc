@@ -74,7 +74,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <div class="input-group-prepend">
                                         <spam class="input-group-text"><i class="fas fa-users"></i></spam>
                                     </div>
-                                    <select class="form-control input-lg nuevaCategoria" name="ventas[clientId]">
+                                    <select class="form-control input-lg nuevaCategoria" name="ventas[clientId]" required>
                                         <option value="">Seleccione Cliente</option>
                                         <?php foreach ($clientes as $client) : ?>
                                             <option value="<?php echo $client->id; ?>"><?php echo $client->name; ?></option>
