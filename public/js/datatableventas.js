@@ -306,6 +306,7 @@ $(".tablaProductosVentas").on("draw.dt", function(){
 			$("button.recuperarBoton[productoId='"+listaIdProducto[i]["productoId"]+"']").addClass('btn-primary agreagarProducto');
         }
     }
+    listarProductos()
 })
 
 var ideliminarListaProducto = [];
@@ -366,6 +367,8 @@ $(".formularioVenta").on("change", "input.cantidadVentaProducto", function(e) {
             confirmButtonText: "¡Cerrar!"
         })
     }
+    
+
     SumarTotalPrecios();
     listarProductos()
 })
@@ -405,7 +408,8 @@ $(".formularioVenta").on("change", "input.impuestoTotalVentas", function(e) {
     $(".totalVentasProducto").val(precioFinalImpuesto);
     $(".soloImpuesto").val(cantImpuesto);
     $(".precioSinImpuesto").val(preciobase);
-
+    
+    listarProductos()
 })
 
 
@@ -504,6 +508,10 @@ function listarProductos(){
 
     var cadenaTexto = JSON.stringify(listarProductos);
     $(".listaProductosVendidos").val(cadenaTexto);
+
+    //MODIFICANDO EL PRECIO TOTAL VENTAS
+    var precioTotalModificar = $(".totalVentasProducto").val();
+    $(".precioTotalVentas").val(precioTotalModificar);
 
 }
 
