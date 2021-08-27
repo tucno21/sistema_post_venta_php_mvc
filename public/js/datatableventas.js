@@ -349,6 +349,7 @@ $(".formularioVenta").on("change", "input.cantidadVentaProducto", function(e) {
     if(Number($(this).val()) > Number($(this).attr("max"))){
         $(this).val(1)
         precio.val(precioReal);
+        SumarTotalPrecios();
         Swal.fire({
             icon: 'error',
             title: 'La cantidad supera el Stock disponible',
