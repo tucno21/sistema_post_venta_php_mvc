@@ -283,6 +283,7 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
             // console.log(description);
             // console.log(precio);
             // console.log(stock);
+            SumarTotalPrecios();
         }
     })
 })
@@ -329,6 +330,12 @@ $(".formularioVenta").on("click", "button.eliminarListaProducto", function(e) {
 
     $("button.recuperarBoton[productoId='"+productoId+"']").removeClass('btn-default');
 	$("button.recuperarBoton[productoId='"+productoId+"']").addClass('btn-primary agreagarProducto');
+
+    if($(".nuevoProductoventa").children().length == 0){
+        $(".totalVentasProducto").val(0);
+    }else{
+        SumarTotalPrecios();
+    }
 })
 
 //MODIFICAR E PRECIO EN FUNCION A LA CANTIDAD
@@ -349,5 +356,27 @@ $(".formularioVenta").on("change", "input.cantidadVentaProducto", function(e) {
             confirmButtonText: "¡Cerrar!"
         })
     }
-
+    SumarTotalPrecios();
 })
+
+//sumar todos los los precios
+
+function SumarTotalPrecios(){
+    var precioItem = $(".ModprecioVentaProducto");
+    var arraySumaPrecios = [];
+
+    for (var i = 0; i < precioItem.length; i++){
+        arraySumaPrecios.push(Number($(precioItem[i]).val()));
+    }
+
+    function sumarArray(total, numero){
+        return total + numero;
+    }
+    var sumaTotalPrecio = arraySumaPrecios.reduce(sumarArray);
+
+    $(".totalVentasProducto").val(sumaTotalPrecio);
+    
+
+
+    // console.log(sumaTotalPrecio);
+}

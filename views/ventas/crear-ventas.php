@@ -147,7 +147,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                             </div>
-                                            <input type="number" class="form-control" name="ventas[total]" placeholder="0000" min="0" readonly required>
+                                            <input type="number" class="form-control totalVentasProducto" name="ventas[total]" placeholder="0" min="0" readonly required>
                                         </div>
                                     </div>
                                 </div>
