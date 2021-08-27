@@ -285,6 +285,8 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
             // console.log(stock);
             SumarTotalPrecios();
             listarProductos();
+            $(".impuestoTotalVentas").val("");
+            
 
             //cambiar formato a los precios imput
             $(".ModprecioVentaProducto").number( true, 2 );
@@ -367,7 +369,7 @@ $(".formularioVenta").on("change", "input.cantidadVentaProducto", function(e) {
             confirmButtonText: "¡Cerrar!"
         })
     }
-    
+    $(".impuestoTotalVentas").val("");
 
     SumarTotalPrecios();
     listarProductos()

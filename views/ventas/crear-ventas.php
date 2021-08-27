@@ -147,9 +147,10 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                             </div>
-                                            <input type="text" class="form-control totalVentasProducto" name="ventas[total]" totalVenta="" placeholder="0" min="0" readonly required>
+                                            <input type="text" class="form-control totalVentasProducto" totalVenta="" placeholder="0" min="0" readonly required>
                                             <input type="hidden" name="ventas[tax_result]" class="soloImpuesto">
                                             <input type="hidden" name="ventas[net]" class="precioSinImpuesto">
+                                            <input type="hidden" name="ventas[total]" class="precioTotalVentas">
                                         </div>
                                     </div>
                                 </div>
