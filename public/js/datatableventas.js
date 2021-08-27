@@ -265,16 +265,16 @@ $(".tablaProductosVentas tbody").on("click", "button.agreagarProducto", function
                 '<!-- CANTIDAD DE PRODUCTO -->'+
                 '<div class="col-2 " style="padding-right:0px">'+
                     '<div class="input-group">'+
-                        '<input type="number" class="form-control" min="1" placeholder="0" max="'+stock+'" required>'+
+                        '<input type="number" class="form-control cantidadVentaProducto" min="1" value="1" max="'+stock+'" required>'+
                     '</div>'+
                 '</div>'+
                 '<!-- PRECIO DEL PRODUCTO -->'+
-                '<div class="col-4">'+
+                '<div class="col-4 precioVentaProducto">'+
                     '<div class="input-group">'+
                         '<div class="input-group-prepend">'+
                             '<spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>'+
                         '</div>'+
-                        '<input type="number" class="form-control" name="ventas[precio]" value="'+precio+'"  min="1" readonly required>'+
+                        '<input type="number" class="form-control ModprecioVentaProducto" name="ventas[precio]" value="'+precio+'" precioReal="'+precio+'"  min="1" readonly required>'+
                     '</div>'+
                 '</div>'+
                 '</div>'
@@ -329,4 +329,25 @@ $(".formularioVenta").on("click", "button.eliminarListaProducto", function(e) {
 
     $("button.recuperarBoton[productoId='"+productoId+"']").removeClass('btn-default');
 	$("button.recuperarBoton[productoId='"+productoId+"']").addClass('btn-primary agreagarProducto');
+})
+
+//MODIFICAR E PRECIO EN FUNCION A LA CANTIDAD
+$(".formularioVenta").on("change", "input.cantidadVentaProducto", function(e) {
+    var precioReal = $(this).parent().parent().parent().children(".precioVentaProducto").children().children(".ModprecioVentaProducto").attr("precioReal");
+    var precio = $(this).parent().parent().parent().children(".precioVentaProducto").children().children(".ModprecioVentaProducto");
+
+    var precioFinal = $(this).val() * precioReal;
+    precio.val(precioFinal);
+
+    if(Number($(this).val()) > Number($(this).attr("max"))){
+        $(this).val(1)
+        precio.val(precioReal);
+        Swal.fire({
+            icon: 'error',
+            title: 'La cantidad supera el Stock disponible',
+            text: '¡solo hay '+$(this).attr("max")+' unidades',
+            confirmButtonText: "¡Cerrar!"
+        })
+    }
+
 })

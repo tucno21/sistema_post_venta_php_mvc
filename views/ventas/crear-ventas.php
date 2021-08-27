@@ -189,7 +189,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 </div>
             </div>
             <!-- //tabla de productos -->
-            <div class="col-lg-7 d-none d-sm-none d-md-block">
+            <div class="col-lg-7 ">
                 <div class="card card-warning">
                     <div class="card-header">
 
