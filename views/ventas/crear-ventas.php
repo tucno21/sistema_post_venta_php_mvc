@@ -163,23 +163,30 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
                                             </div>
-                                            <select class="form-control input-lg nuevaCategoria" name="ventas[metodopago]" required>
+                                            <select class="form-control input-lg metodoTipoPago" name="ventas[payment_method]" required>
                                                 <option value="">Seleccione Forma de pago</option>
-                                                <option value="1">efectivo</option>
-                                                <option value="2">tarjeta credito</option>
-                                                <option value="2">tarjeta debito</option>
+                                                <option value="efectivo">efectivo</option>
+                                                <option value="TC">tarjeta credito</option>
+                                                <option value="TD">tarjeta debito</option>
                                             </select>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="input-group">
+                                <div class="col-6 cajasMetodoPago">
+                                    <!-- <div class="input-group">
                                         <input type="text" class="form-control" name="ventas[tarjeta]" placeholder="Codigo de transacción" required>
                                         <div class="input-group-prepend">
                                             <spam class="input-group-text"><i class="fas fa-lock"></i></spam>
                                         </div>
                                     </div>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <spam class="input-group-text"><i class="fa-dollar-sign"></i></spam>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="0" required>
+                                    </div> -->
                                 </div>
                             </div>
 

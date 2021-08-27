@@ -405,3 +405,46 @@ $(".formularioVenta").on("change", "input.impuestoTotalVentas", function(e) {
 
 })
 
+
+//seleccionar metodo de pago
+$(".metodoTipoPago").change(function(){
+    var metodo = $(this).val();
+
+    if(metodo == "efectivo"){
+        $(this).parent().parent().parent().removeClass("col-6");
+        $(this).parent().parent().parent().addClass("col-4");
+        // $(this).parent().parent().parent().parent().children("cajasMetodoPago").remove();
+        $(this).parent().parent().parent().parent().children("cajasMetodoPago").removeClass("col-6");
+        $(this).parent().parent().parent().parent().children("cajasMetodoPago").addClass("col-8");
+        $(this).parent().parent().parent().parent().children(".cajasMetodoPago").html(
+        '<div class="input-group">'+
+            '<div class="input-group-prepend">'+
+                '<spam class="input-group-text"><i class="fa fa-dollar-sign"></i></spam>'+
+            '</div>'+
+            '<input type="text" class="form-control entradaEfectivo" placeholder="0" required>'+
+        '</div>'+
+        '<div class="input-group">'+
+            '<div class="input-group-prepend">'+
+                '<spam class="input-group-text"><i class="fa fa-dollar-sign"></i></spam>'+
+            '</div>'+
+            '<input type="text" class="form-control salidaEfectivo" placeholder="0" readonly required>'+
+        '</div>'
+        );
+
+        $(".entradaEfectivo").number( true, 2 );
+        $(".salidaEfectivo").number( true, 2 );
+
+    }else if(metodo == "TC" || metodo == "TD"){
+        // $(this).parent().parent().parent().parent().children(".cajasMetodoPago").remove();
+        $(this).parent().parent().parent().parent().children(".cajasMetodoPago").html(
+            '<div class="input-group">'+
+                '<input type="text" class="form-control" placeholder="Codigo de transacción" required>'+
+                '<div class="input-group-prepend">'+
+                    '<spam class="input-group-text"><i class="fas fa-lock"></i></spam>'+
+                '</div>'+
+            '</div>'
+            );
+    }
+
+})
+
