@@ -448,3 +448,23 @@ $(".metodoTipoPago").change(function(){
 
 })
 
+
+$(".formularioVenta").on("change", "input.entradaEfectivo", function(e) {
+    var entradaEfectivo = $(this).val();
+    if(Number(entradaEfectivo) > Number($(".totalVentasProducto").val())){
+        var camnio = Number(entradaEfectivo) - Number($(".totalVentasProducto").val());
+        $(".salidaEfectivo").val(camnio);
+    }else{
+        var entradaEfectivo = $(this).val(0);
+        $(".salidaEfectivo").val(0);
+        Swal.fire({
+            icon: 'error',
+            title: 'La cantidad de dinero es insuficiente',
+            text: '¡el pago es de '+ Number($(".totalVentasProducto").val()),
+            confirmButtonText: "¡Cerrar!"
+        })
+    }
+    
+
+    
+})
