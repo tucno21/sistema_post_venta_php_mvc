@@ -4,7 +4,7 @@
                             <div class="input-group-prepend">
                                 <spam class="input-group-text"><i class="fa fa-user"></i></spam>
                             </div>
-                            <input type="text" class="form-control input-lg" name="user[name_u]" placeholder="Ingresar Nombre" value='<?php echo $user->name; ?>' required>
+                            <input type="text" class="form-control input-lg" name="user[name_u]" placeholder="Ingresar Nombre" value='<?php echo $user->name_u; ?>' required>
                         </div>
                     </div>
                     <!-- USUARIO -->
