@@ -4,6 +4,7 @@ namespace Controllers;
 
 use MVC\Router;
 use Model\Sales;
+use Model\Users;
 use Model\Clients;
 use Model\Products;
 
@@ -155,6 +156,32 @@ class SaleController
             'clientes' => $clientes,
             'errorCliente' => $errorCliente,
             'errores' => $errores,
+        ]);
+    }
+
+    public static function actualizar(Router $router)
+    {
+        $errores = [];
+        $errorCliente = [];
+        //traer la venta por ID
+        $id = validarORedireccionar('/ventas');
+        $valorColum = $id;
+        $sale = Sales::find($valorColum);
+        //traer el vendedor por ID
+        $idUser = $sale->sellerId;
+        $user = Users::find($idUser);
+        $array = ["id" => $user->id, "name_u" => $user->name_u];
+        $vendedorUser = json_decode(json_encode($array));
+        //traer a todos los vendedores
+        $clientes = Clients::All();
+
+
+        $router->render('ventas/actualizar', [
+            'errores' => $errores,
+            'errorCliente' => $errorCliente,
+            'sale' => $sale,
+            'clientes' => $clientes,
+            'vendedorUser' => $vendedorUser,
         ]);
     }
 
