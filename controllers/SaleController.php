@@ -164,10 +164,10 @@ class SaleController
         $errores = [];
         $errorCliente = [];
         //traer la venta por ID
-        $id = validarORedireccionar('/ventas');
-        $valorColum = $id;
+        $idG = validarORedireccionar('/ventas');
+        $valorColum = $idG;
         $sale = Sales::find($valorColum);
-        $productosVendidos = json_decode($sale->products);
+        $productosVendidosM = json_decode($sale->products);
         //traer el vendedor por ID
         $idUser = $sale->sellerId;
         $user = Users::find($idUser);
@@ -175,7 +175,165 @@ class SaleController
         $vendedorUser = json_decode(json_encode($array));
         //traer a todos los vendedores
         $clientes = Clients::All();
-        // debuguear($sale);
+
+        //traer los productos por el ID
+        //modificar el stock de la venta anterior en funcion a la BD
+        $base = [];
+        foreach ($productosVendidosM as $pv) {
+            $ProdStock = Products::find($pv->id);
+            array_push($base, [
+                "id" => $pv->id,
+                "description" => $pv->description,
+                "cantidad" => $pv->cantidad,
+                "stock" => $ProdStock->stock,
+                "precio" => $pv->precio,
+                "total" => $pv->total
+            ]);
+            // debuguear($producto);
+        }
+        $productosVendidos = json_decode(json_encode($base));
+
+        // debuguear($productosVendidos);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['client'])) {
+                if (!$_POST['client']['name']) {
+                    array_push($errorCliente, "El nobre es obligatorio");
+                }
+                if (!$_POST['client']['dni']) {
+                    array_push($errorCliente, "El Dni es obligatorio");
+                }
+                if (!$_POST['client']['email']) {
+                    array_push($errorCliente, "El email es obligatorio");
+                }
+                if (!$_POST['client']['telephone']) {
+                    array_push($errorCliente, "El telefono es obligatorio");
+                }
+                if (!$_POST['client']['direction']) {
+                    array_push($errorCliente, "La dirección es obligatorio");
+                }
+                if (!$_POST['client']['date_birth']) {
+                    array_push($errorCliente, "La fehca de cumpleaños es obligatorio");
+                }
+                // if (preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST['client']['email'])) {
+                //     array_push($errorCliente, "No es un email");
+                // }
+                if (
+                    preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['client']['name']) &&
+                    preg_match('/^[0-9]+$/', $_POST['client']['dni']) &&
+                    preg_match('/^[()\-0-9 ]+$/', $_POST['client']['telephone']) &&
+                    preg_match('/^[#\.\-a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['client']['direction'])
+                ) {
+                    //Buscar email y traer
+                    $colum =  "email";
+                    $valorColum = $_POST['client']["email"];
+                    $respuesta = Clients::FindColumn($colum, $valorColum);
+                    $email = isset($respuesta->email);
+                    if (!$email) {
+                        if (empty($errorCliente)) {
+                            $client = $_POST['client'];
+                            $respuesta = Clients::Save($client);
+
+                            if ($respuesta == "ok") {
+                                header('Location: /ventas/crear');
+                            }
+                        }
+                    } else {
+                        array_push($errorCliente, "El email ya existe!");
+                    }
+                } else {
+                    array_push($errorCliente, "Caracteres no admitidos, ingrese caracteres A-Z y/o 0-9");
+                }
+            }
+
+            if (isset($_POST['ventas'])) {
+                if (!$_POST['ventas']['sale_code']) {
+                    array_push($errores, "el código es importante");
+                }
+                if (!$_POST['ventas']['clientId']) {
+                    array_push($errores, "Falta el cliente");
+                }
+                if (!$_POST['ventas']['sellerId']) {
+                    array_push($errores, "Falta el vendedor");
+                }
+                if (!$_POST['ventas']['products']) {
+                    array_push($errores, "No hay productos seleccionados");
+                }
+                if (!$_POST['ventas']['tax_result']) {
+                    array_push($errores, "Falta el impuesto");
+                }
+                if (!$_POST['ventas']['net']) {
+                    array_push($errores, "Falta el costo de la venta neta");
+                }
+                if (!$_POST['ventas']['total']) {
+                    array_push($errores, "Falta el precio total de la venta");
+                }
+                if (!$_POST['ventas']['payment_method']) {
+                    array_push($errores, "El metodo de pago es obligatorio");
+                }
+                if (
+                    preg_match('/^[0-9]+$/', $_POST['ventas']['sale_code']) &&
+                    preg_match('/^[0-9]+$/', $_POST['ventas']['clientId']) &&
+                    preg_match('/^[0-9]+$/', $_POST['ventas']['sellerId']) &&
+                    preg_match('/^[0-9.]+$/', $_POST['ventas']['tax_result']) &&
+                    preg_match('/^[0-9.]+$/', $_POST['ventas']['net']) &&
+                    preg_match('/^[0-9.]+$/', $_POST['ventas']['total'])
+                    // preg_match('/^[a-zA-z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['ventas']['payment_method'])
+                ) {
+                    //RESET DE STOCK DE PRODUCTOS
+                    $resetCompras = 0;
+                    foreach ($productosVendidos as $product) {
+                        $id = $product->id;
+                        $compareproducto = Products::find($id);
+                        $resetVenta = $compareproducto->sales - 1;
+                        $resetStock = $product->cantidad + $product->stock;
+                        $array = ["stock" => $resetStock, "sales" => $resetVenta];
+                        // debuguear($array);
+                        $respuesta = Products::update($array, $id);
+                        $resetCompras++;
+                    }
+                    // RESET  COMPRAS CLIENTES
+                    $id = $_POST['ventas']['clientId'];
+                    $compareCliente = Clients::find($id);
+                    $resetVenta = $compareCliente->sales - $resetCompras;
+                    $array = ["sales" => $resetVenta];
+                    $respuesta = Clients::update($array, $id);
+
+
+                    //#################################
+                    // ACTUALIZAR PRODUCTOS
+                    $productosComprados = json_decode($_POST['ventas']['products']);
+
+                    $compras = 0;
+                    foreach ($productosComprados as $product) {
+                        $id = $product->id;
+                        $compareproducto = Products::find($id);
+                        $ventaMas = $compareproducto->sales + 1;
+                        $array = ["stock" => $product->stock, "sales" => $ventaMas];
+                        $respuesta = Products::update($array, $id);
+                        $compras++;
+                    }
+                    // ACTUALIZAR CLIENTES
+                    $id = $_POST['ventas']['clientId'];
+                    $compareCliente = Clients::find($id);
+                    $ventaMas = $compareCliente->sales + $compras;
+                    $array = ["sales" => $ventaMas];
+                    $respuesta = Clients::update($array, $id);
+
+                    //ACTUALIZAR VENTAS
+                    $ventas = $_POST['ventas'];
+                    $resp = Sales::update($ventas, $idG);
+
+                    if ($resp == "ok") {
+                        header('Location: /ventas');
+                    }
+
+                    // debuguear($_POST['ventas']);
+                } else {
+                    array_push($errores, "Caracteres no admitidos, ingrese caracteres A-Z y/o 0-9");
+                }
+            }
+        }
+
 
         $router->render('ventas/actualizar', [
             'errores' => $errores,

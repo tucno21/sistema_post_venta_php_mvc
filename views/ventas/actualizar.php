@@ -150,9 +150,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                                 <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                             </div>
                                             <input type="text" class="form-control totalVentasProducto" totalVenta="" value="<?php echo $sale->total; ?>" placeholder="0" min="0" readonly required>
-                                            <input type="hidden" name="ventas[tax_result]" class="soloImpuesto">
-                                            <input type="hidden" name="ventas[net]" class="precioSinImpuesto">
-                                            <input type="hidden" name="ventas[total]" class="precioTotalVentas">
+                                            <input type="hidden" value="<?php echo $sale->tax_result; ?>" name="ventas[tax_result]" class="soloImpuesto">
+                                            <input type="hidden" value="<?php echo $sale->net; ?>" name="ventas[net]" class="precioSinImpuesto">
+                                            <input type="hidden" value="<?php echo $sale->total; ?>" name="ventas[total]" class="precioTotalVentas">
                                         </div>
                                     </div>
                                 </div>
@@ -174,7 +174,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                                     <option selected value="TC">tarjeta credito</option>
                                                     <option value="TD">tarjeta debito</option>
                                                 </select>
-                                                <input type="hidden" class="listaMetodoPago" name="ventas[payment_method]">
+                                                <input type="hidden" value="<?php echo $sale->payment_method; ?>" class="listaMetodoPago" name="ventas[payment_method]">
 
                                             </div>
                                         </div>
@@ -201,7 +201,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                                     <option value="TC">tarjeta credito</option>
                                                     <option selected value="TD">tarjeta debito</option>
                                                 </select>
-                                                <input type="hidden" class="listaMetodoPago" name="ventas[payment_method]">
+                                                <input type="hidden" value="<?php echo $sale->payment_method; ?>" class="listaMetodoPago" name="ventas[payment_method]">
 
                                             </div>
                                         </div>
@@ -228,7 +228,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                                     <option value="TC">tarjeta credito</option>
                                                     <option value="TD">tarjeta debito</option>
                                                 </select>
-                                                <input type="hidden" class="listaMetodoPago" name="ventas[payment_method]">
+                                                <input type="hidden" value="<?php echo $sale->payment_method; ?>" class="listaMetodoPago" name="ventas[payment_method]">
 
                                             </div>
                                         </div>
