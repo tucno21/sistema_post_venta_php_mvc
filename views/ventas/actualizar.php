@@ -88,31 +88,38 @@ if (session_status() == PHP_SESSION_NONE) {
                             <!-- BLOQUE DE IMPUTS -->
                             <div class="form-group">
                                 <div class="row nuevoProductoventa">
-                                    <!-- DESCRIPCION DEL PRODUCTOS
-                                    <div class="col-6" style="padding-right:0px">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <spam class="input-group-text"><button type="button" class="btn btn-danger btn-xs"><i class="fas fa-times"></i></button>
-                                                </spam>
+                                    <?php foreach ($productosVendidos as $pv) : ?>
+
+                                        <div class="row">
+                                            <!-- DESCRIPCION DEL PRODUCTOS -->
+                                            <div class="col-6" style="padding-right:0px">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <spam class="input-group-text"><button type="button" class="btn btn-danger btn-xs eliminarListaProducto" productiId="<?php echo $pv->id; ?>"><i class="fas fa-times"></i></button></spam>
+                                                    </div>
+                                                    <input type="text" class="form-control descriptionProducto" ventaProductoId="<?php echo $pv->id; ?>" value="<?php echo $pv->description; ?>" readonly required>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control" name="ventas[description]" placeholder="Descripción del producto" required>
-                                        </div>
-                                    </div>
-                                    CANTIDAD DE PRODUCTO
-                                    <div class="col-2 " style="padding-right:0px">
-                                        <div class="input-group">
-                                            <input type="number" class="form-control" name="ventas[cantidad]" min="1" placeholder="0" required>
-                                        </div>
-                                    </div>
-                                    PRECIO DEL PRODUCTO
-                                    <div class="col-4">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
+
+                                            <!-- CANTIDAD DE PRODUCTO -->
+                                            <div class="col-2 " style="padding-right:0px">
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control cantidadVentaProducto" min="1" value="<?php echo $pv->cantidad; ?>" max="<?php echo $pv->stock + $pv->cantidad; ?>" required>
+                                                </div>
                                             </div>
-                                            <input type="number" class="form-control" name="ventas[precio]" placeholder="00000" min="1" readonly required>
+
+                                            <!-- PRECIO DEL PRODUCTO -->
+                                            <div class="col-4 precioVentaProducto">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
+                                                    </div>
+                                                    <input type="text" class="form-control ModprecioVentaProducto" value="<?php echo $pv->total; ?>" precioReal="<?php echo $pv->precio; ?>" min="1" readonly required>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div> -->
+
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                             <!-- FIN BLOQUE DE IMPUTS -->
@@ -128,7 +135,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                     <div class="form-group">
                                         <label for="">Impuesto</label>
                                         <div class="input-group">
-                                            <input type="number" class="form-control impuestoTotalVentas" placeholder="0" min="0" required>
+                                            <input type="number" class="form-control impuestoTotalVentas" placeholder="0" value="<?php echo $sale->tax_result / $sale->net * 100; ?>" min="0" required>
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-percent"></i></spam>
                                             </div>
@@ -142,7 +149,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                             </div>
-                                            <input type="text" class="form-control totalVentasProducto" totalVenta="" placeholder="0" min="0" readonly required>
+                                            <input type="text" class="form-control totalVentasProducto" totalVenta="" value="<?php echo $sale->total; ?>" placeholder="0" min="0" readonly required>
                                             <input type="hidden" name="ventas[tax_result]" class="soloImpuesto">
                                             <input type="hidden" name="ventas[net]" class="precioSinImpuesto">
                                             <input type="hidden" name="ventas[total]" class="precioTotalVentas">
@@ -153,37 +160,94 @@ if (session_status() == PHP_SESSION_NONE) {
                             <hr>
                             <!-- METODO DE PAGO -->
                             <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
+                                <?php if (strpos($sale->payment_method, "TC") !== false) : ?>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
+                                                </div>
+
+                                                <select class="form-control input-lg metodoTipoPago" required>
+                                                    <option value="">Seleccione Forma de pago</option>
+                                                    <option value="efectivo">efectivo</option>
+                                                    <option selected value="TC">tarjeta credito</option>
+                                                    <option value="TD">tarjeta debito</option>
+                                                </select>
+                                                <input type="hidden" class="listaMetodoPago" name="ventas[payment_method]">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 cajasMetodoPago">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control registroTransaccion" value="<?php echo  substr($sale->payment_method, 3); ?>" required>
+                                            <div class="input-group-prepend">
+                                                <spam class="input-group-text"><i class="fas fa-lock"></i></spam>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php elseif (strpos($sale->payment_method, "TD") !== false) : ?>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
+                                                </div>
+
+                                                <select class="form-control input-lg metodoTipoPago" required>
+                                                    <option value="">Seleccione Forma de pago</option>
+                                                    <option value="efectivo">efectivo</option>
+                                                    <option value="TC">tarjeta credito</option>
+                                                    <option selected value="TD">tarjeta debito</option>
+                                                </select>
+                                                <input type="hidden" class="listaMetodoPago" name="ventas[payment_method]">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 cajasMetodoPago">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control registroTransaccion" value="<?php echo  substr($sale->payment_method, 3); ?>" required>
+                                            <div class="input-group-prepend">
+                                                <spam class="input-group-text"><i class="fas fa-lock"></i></spam>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php else : ?>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
+                                                </div>
+
+                                                <select class="form-control input-lg metodoTipoPago" required>
+                                                    <option value="">Seleccione Forma de pago</option>
+                                                    <option selected value="efectivo">efectivo</option>
+                                                    <option value="TC">tarjeta credito</option>
+                                                    <option value="TD">tarjeta debito</option>
+                                                </select>
+                                                <input type="hidden" class="listaMetodoPago" name="ventas[payment_method]">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 cajasMetodoPago">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <spam class="input-group-text"><i class="fas fa-hand-holding-usd"></i></spam>
+                                                <spam class="input-group-text"><i class="fa fa-dollar-sign"></i></spam>
                                             </div>
-                                            <select class="form-control input-lg metodoTipoPago" required>
-                                                <option value="">Seleccione Forma de pago</option>
-                                                <option value="efectivo">efectivo</option>
-                                                <option value="TC">tarjeta credito</option>
-                                                <option value="TD">tarjeta debito</option>
-                                            </select>
-                                            <input type="hidden" class="listaMetodoPago" name="ventas[payment_method]">
+                                            <input type="text" class="form-control entradaEfectivo" placeholder="0" required>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <spam class="input-group-text"><i class="fa fa-dollar-sign"></i></spam>
+                                            </div>
+                                            <input type="text" class="form-control salidaEfectivo" placeholder="0" readonly required>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-6 cajasMetodoPago">
-                                    <!-- <div class="input-group">
-                                        <input type="text" class="form-control" name="ventas[tarjeta]" placeholder="Codigo de transacción" required>
-                                        <div class="input-group-prepend">
-                                            <spam class="input-group-text"><i class="fas fa-lock"></i></spam>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <spam class="input-group-text"><i class="fa-dollar-sign"></i></spam>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="0" required>
-                                    </div> -->
-                                </div>
+                                <?php endif; ?>
                             </div>
 
                         </div>

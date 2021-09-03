@@ -167,6 +167,7 @@ class SaleController
         $id = validarORedireccionar('/ventas');
         $valorColum = $id;
         $sale = Sales::find($valorColum);
+        $productosVendidos = json_decode($sale->products);
         //traer el vendedor por ID
         $idUser = $sale->sellerId;
         $user = Users::find($idUser);
@@ -174,7 +175,7 @@ class SaleController
         $vendedorUser = json_decode(json_encode($array));
         //traer a todos los vendedores
         $clientes = Clients::All();
-
+        // debuguear($sale);
 
         $router->render('ventas/actualizar', [
             'errores' => $errores,
@@ -182,6 +183,7 @@ class SaleController
             'sale' => $sale,
             'clientes' => $clientes,
             'vendedorUser' => $vendedorUser,
+            'productosVendidos' => $productosVendidos,
         ]);
     }
 

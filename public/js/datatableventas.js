@@ -506,7 +506,7 @@ function listarProductos(){
         });
     }
 
-    // console.log(listarProductos);
+    console.log(listarProductos);
 
     var cadenaTexto = JSON.stringify(listarProductos);
     $(".listaProductosVendidos").val(cadenaTexto);
