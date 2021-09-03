@@ -149,7 +149,8 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <div class="input-group-prepend">
                                                 <spam class="input-group-text"><i class="fas fa-dollar-sign"></i></spam>
                                             </div>
-                                            <input type="text" class="form-control totalVentasProducto" totalVenta="" value="<?php echo $sale->total; ?>" placeholder="0" min="0" readonly required>
+                                            <input type="text" class="form-control totalVentasProducto" totalVenta="<?php echo $sale->net; ?>" value="<?php echo $sale->total; ?>" placeholder="0" min="0" readonly required>
+
                                             <input type="hidden" value="<?php echo $sale->tax_result; ?>" name="ventas[tax_result]" class="soloImpuesto">
                                             <input type="hidden" value="<?php echo $sale->net; ?>" name="ventas[net]" class="precioSinImpuesto">
                                             <input type="hidden" value="<?php echo $sale->total; ?>" name="ventas[total]" class="precioTotalVentas">
