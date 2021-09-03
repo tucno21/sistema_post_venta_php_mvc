@@ -346,7 +346,10 @@ $(".formularioVenta").on("click", "button.eliminarListaProducto", function(e) {
     }else{
         SumarTotalPrecios();
         listarProductos();
+        $(".impuestoTotalVentas").val("");
     }
+
+    
 })
 
 //MODIFICAR E PRECIO EN FUNCION A LA CANTIDAD
