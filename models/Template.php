@@ -65,6 +65,28 @@ class Template
         $stmt->null;
     }
 
+    //buscar un dato por columna
+    public static function AllColum($colum, $valorColum)
+    {
+
+        $query = "SELECT * FROM " . static::$table . " WHERE $colum = '$valorColum'";
+        $stmt = self::$db->query($query);
+        //Pasar todos los datos a arreglo asociativo
+        $resultadato = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
+        //convertir el arreglo a objeto
+        $mi_objeto = json_decode(json_encode($resultadato));
+        // debuguear($mi_objeto);
+
+        //enviar objeto de la respuesta
+        return $mi_objeto;
+
+        //cerrar 
+        $stmt->close();
+
+        //limpiar objeto
+        $stmt->null;
+    }
+
     public static function All()
     {
         $query = "SELECT * FROM " . static::$table;

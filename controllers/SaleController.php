@@ -345,6 +345,101 @@ class SaleController
         ]);
     }
 
+    public static function eliminar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $idG = $_GET['id'];
+            //validar que el id sea entero
+            $idG = filter_var($idG, FILTER_VALIDATE_INT);
+
+            if ($idG) {
+                //verificar sea tipo venta
+                $tipo = $_GET['tipo'];
+                if (validarTipoContenido($tipo)) {
+                    //BUSCAR Y TRAER VENTA
+                    $valorColum = $idG;
+                    $sale = Sales::find($valorColum);
+
+                    //##########
+                    $productosVendidosM = json_decode($sale->products);
+                    //traer los productos por el ID
+                    //modificar el stock de la venta anterior en funcion a la BD
+                    $base = [];
+                    foreach ($productosVendidosM as $pv) {
+                        $ProdStock = Products::find($pv->id);
+                        array_push($base, [
+                            "id" => $pv->id,
+                            "cantidad" => $pv->cantidad,
+                            "stock" => $ProdStock->stock,
+                        ]);
+                        // debuguear($producto);
+                    }
+                    $productosVendidos = json_decode(json_encode($base));
+
+                    //#############################
+                    //RESET DE STOCK DE PRODUCTOS
+                    $resetCompras = 0;
+                    foreach ($productosVendidos as $product) {
+                        $id = $product->id;
+                        $compareproducto = Products::find($id);
+                        $resetVenta = $compareproducto->sales - 1;
+                        $resetStock = $product->cantidad + $product->stock;
+                        $array = ["stock" => $resetStock, "sales" => $resetVenta];
+                        // debuguear($array);
+                        $respuesta = Products::update($array, $id);
+                        $resetCompras++;
+                    }
+                    //#############################
+                    //TRAER TODAS COMPRAS FECHAS DEL CLIENTE
+                    $colum = "clientId";
+                    $valorColum = $sale->clientId;
+                    $compraCliente = Sales::AllColum($colum, $valorColum);
+                    //almacenar todas la fechas
+                    $fechas = [];
+                    foreach ($compraCliente as $cp) {
+                        array_push($fechas, $cp->registration_date);
+                    }
+
+                    if (count($fechas) > 1) {
+                        //comparar la fecha de eliminar con el penultimo fecha de array
+                        if ($sale->registration_date > $fechas[count($fechas) - 2]) {
+                            // RESET  COMPRAS CLIENTES
+                            $idcliente = $sale->clientId;
+                            $compareCliente = Clients::find($idcliente);
+                            $resetVenta = $compareCliente->sales - $resetCompras;
+
+                            $array = ["sales" => $resetVenta, "registration_date" => $fechas[count($fechas) - 2]];
+                            $respuesta = Clients::update($array, $id);
+                            // debuguear($array);
+                        } else {
+                            // RESET  COMPRAS CLIENTES
+                            $idcliente = $sale->clientId;
+                            $compareCliente = Clients::find($idcliente);
+                            $resetVenta = $compareCliente->sales - $resetCompras;
+
+                            $array = ["sales" => $resetVenta, "registration_date" => $fechas[count($fechas) - 1]];
+                            $respuesta = Clients::update($array, $id);
+                            // debuguear($array);
+                        }
+                    } else {
+                        // RESET  COMPRAS CLIENTES
+                        $idcliente = $sale->clientId;
+                        $compareCliente = Clients::find($idcliente);
+                        $resetVenta = $compareCliente->sales - $resetCompras;
+
+                        $array = ["sales" => $resetVenta, "registration_date" => "0000-00-00 00:00:00"];
+                        $respuesta = Clients::update($array, $id);
+                    }
+
+                    $respuesta = Sales::delete($idG);
+                    if ($respuesta == "ok") {
+                        header('Location: /ventas');
+                    }
+                }
+            }
+        }
+    }
+
 
     public static function lista()
     {
