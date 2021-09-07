@@ -68,6 +68,9 @@ $router->get('/ventas/eliminar', [SaleController::class, "eliminar"]);
 $router->get('/ventas/lista', [SaleController::class, "lista"]);
 $router->get('/ventas/buscar', [SaleController::class, "buscar"]);
 
+// factura
+$router->get('/ventas/factura', [SaleController::class, "index"]);
+
 
 //lamando el metodo de ruter
 $router->comprobarRutas();
