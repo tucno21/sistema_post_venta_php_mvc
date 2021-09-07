@@ -7,6 +7,7 @@ use Controllers\SaleController;
 use Controllers\UserController;
 use Controllers\LoginController;
 use Controllers\ClientController;
+use Controllers\FacturaController;
 use Controllers\ProductController;
 use Controllers\CategoryController;
 use Controllers\DashboardController;
@@ -69,7 +70,7 @@ $router->get('/ventas/lista', [SaleController::class, "lista"]);
 $router->get('/ventas/buscar', [SaleController::class, "buscar"]);
 
 // factura
-$router->get('/ventas/factura', [SaleController::class, "index"]);
+$router->get('/ventas/factura', [FacturaController::class, "index"]);
 
 
 //lamando el metodo de ruter
