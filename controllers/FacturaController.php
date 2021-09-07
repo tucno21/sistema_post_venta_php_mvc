@@ -9,6 +9,6 @@ class FacturaController
 {
     public static function index(Router $router)
     {
-        $router->render('TCPDF/factura', []);
+        $router->render('pdf/factura', []);
     }
 }
