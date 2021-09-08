@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/daterangepicker/daterangepicker.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-collapse">

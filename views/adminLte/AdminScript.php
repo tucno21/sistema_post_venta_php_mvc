@@ -3,7 +3,7 @@
 <!-- Bootstrap 4 -->
 <script src="<?php echo $linkURL; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- InputMask -->
-<!-- <script src="<?php echo $linkURL; ?>plugins/moment/moment.min.js"></script> -->
+<script src="<?php echo $linkURL; ?>plugins/moment/moment.min.js"></script>
 <script src="<?php echo $linkURL; ?>plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo $linkURL; ?>dist/js/adminlte.min.js"></script>
@@ -12,6 +12,9 @@
 <!-- AdminLTE App -->
 <script src="../js/visorfoto.js"></script>
 <script src="../js/jQueryNumber.js"></script>
+<!-- date-range-picker -->
+<script src="<?php echo $linkURL; ?>plugins/daterangepicker/daterangepicker.js"></script>
+
 <!-- DataTables  & Plugins -->
 <script src="<?php echo $linkURL; ?>plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo $linkURL; ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -22,10 +25,12 @@
 <script src="<?php echo $linkURL; ?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo $linkURL; ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo $linkURL; ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
 <!-- MOD PERSONAL -->
 <script src="../js/datatable.js"></script>
 <script src="../js/datatableventas.js"></script>
+<script src="../js/fecharangos.js"></script>
+
+
 </body>
 
 </html>
