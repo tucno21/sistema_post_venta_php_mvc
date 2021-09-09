@@ -12,7 +12,18 @@ class SaleController
 {
     public static function index(Router $router)
     {
-        $ventas = Sales::AllSales();
+        if (isset($_GET['fechaInicial'])) {
+            $fechaInicial = $_GET['fechaInicial'];
+            $fechaFinal = $_GET['fechaFinal'];
+
+            $ventas = Sales::BuscarRango($fechaInicial, $fechaFinal);
+            // debuguear($ventas);
+        } else {
+            $ventas = Sales::AllSales();
+            // debuguear($ventas);
+        }
+
+
         // debuguear($ventas);
         $router->render('ventas/index', [
             'ventas' => $ventas,
