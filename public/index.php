@@ -7,6 +7,7 @@ use Controllers\SaleController;
 use Controllers\UserController;
 use Controllers\LoginController;
 use Controllers\ClientController;
+use Controllers\ReportController;
 use Controllers\FacturaController;
 use Controllers\ProductController;
 use Controllers\CategoryController;
@@ -72,6 +73,8 @@ $router->get('/ventas/buscar', [SaleController::class, "buscar"]);
 // factura
 $router->get('/ventas/factura', [FacturaController::class, "index"]);
 
+// factura
+$router->get('/reportes', [ReportController::class, "index"]);
 
 //lamando el metodo de ruter
 $router->comprobarRutas();
