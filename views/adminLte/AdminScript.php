@@ -29,6 +29,7 @@
 <script src="../js/datatable.js"></script>
 <script src="../js/datatableventas.js"></script>
 <script src="../js/fecharangos.js"></script>
+<script src="../js/reporterango.js"></script>
 
 
 </body>

@@ -1,5 +1,4 @@
-//Date range as a button
-$('#fechasDeVentas').daterangepicker({
+$('#fechasReportes').daterangepicker({
     ranges   : {
         'Todo': [],
         'Hoy': [moment(), moment()],
@@ -11,28 +10,28 @@ $('#fechasDeVentas').daterangepicker({
     },
         startDate: moment(),
         endDate  : moment(),
-        
+        opens: "left"
     },
 
     function (start, end) {
-        $('#fechasDeVentas').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        $('#fechasReportes').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
 
         var fechaInicial = start.format('YYYY-MM-DD');
         // console.log(fechaInicial);
         var fechaFinal = end.format('YYYY-MM-DD');
         // console.log(fechaFinal);
 
-        window.location = "/ventas?fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
+        window.location = "/reportes?fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
         // var capturarRango = $('#fechasDeVentas span').html();
         // console.log(capturarRango);
     }
 )
 
-$(".daterangepicker.opensright .ranges li").on('click', function(){
+$(".daterangepicker.opensleft .ranges li").on('click', function(){
     // window.location = "/ventas";
     var todo = $(this).attr("data-range-key");
     if(todo == "Todo"){
-        window.location = "/ventas";
+        window.location = "/reportes";
     }else if(todo == "Hoy"){
         var d = new Date();
 
@@ -48,7 +47,7 @@ $(".daterangepicker.opensright .ranges li").on('click', function(){
 
         var fechaInicial = ano+"-"+mes+"-"+dia;
         var fechaFinal = ano+"-"+mes+"-"+dia;
-        window.location = "/ventas?fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
+        window.location = "/reportes?fechaInicial="+fechaInicial+"&fechaFinal="+fechaFinal;
         // console.log(mes);
     }
 
