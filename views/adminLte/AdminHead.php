@@ -25,6 +25,10 @@
     <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- daterange picker -->
     <link rel="stylesheet" href="<?php echo $linkURL; ?>plugins/daterangepicker/daterangepicker.css">
+    <!-- jQuery -->
+    <script src="<?php echo $linkURL; ?>plugins/jquery/jquery.min.js"></script>
+    <!-- ChartJS -->
+    <script src="<?php echo $linkURL; ?>plugins/chart.js/Chart.min.js"></script>
 
 </head>
 

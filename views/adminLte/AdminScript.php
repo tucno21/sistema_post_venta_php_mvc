@@ -1,5 +1,5 @@
 <!-- jQuery -->
-<script src="<?php echo $linkURL; ?>plugins/jquery/jquery.min.js"></script>
+<!-- <script src="<?php echo $linkURL; ?>plugins/jquery/jquery.min.js"></script> -->
 <!-- Bootstrap 4 -->
 <script src="<?php echo $linkURL; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- InputMask -->
@@ -15,7 +15,7 @@
 <!-- date-range-picker -->
 <script src="<?php echo $linkURL; ?>plugins/daterangepicker/daterangepicker.js"></script>
 <!-- ChartJS -->
-<script src="<?php echo $linkURL; ?>plugins/chart.js/Chart.min.js"></script>
+<!-- <script src="<?php echo $linkURL; ?>plugins/chart.js/Chart.min.js"></script> -->
 
 <!-- DataTables  & Plugins -->
 <script src="<?php echo $linkURL; ?>plugins/datatables/jquery.dataTables.min.js"></script>
