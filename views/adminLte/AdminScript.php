@@ -14,6 +14,8 @@
 <script src="../js/jQueryNumber.js"></script>
 <!-- date-range-picker -->
 <script src="<?php echo $linkURL; ?>plugins/daterangepicker/daterangepicker.js"></script>
+<!-- ChartJS -->
+<script src="<?php echo $linkURL; ?>plugins/chart.js/Chart.min.js"></script>
 
 <!-- DataTables  & Plugins -->
 <script src="<?php echo $linkURL; ?>plugins/datatables/jquery.dataTables.min.js"></script>
@@ -25,11 +27,14 @@
 <script src="<?php echo $linkURL; ?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?php echo $linkURL; ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?php echo $linkURL; ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
 <!-- MOD PERSONAL -->
 <script src="../js/datatable.js"></script>
 <script src="../js/datatableventas.js"></script>
 <script src="../js/fecharangos.js"></script>
 <script src="../js/reporterango.js"></script>
+<script src="../js/graficos.js"></script>
 
 
 </body>

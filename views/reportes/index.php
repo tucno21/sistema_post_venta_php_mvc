@@ -23,7 +23,14 @@
             </div>
 
             <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <?php
+                        include 'graficos/graficoVenta.php';
+                        ?>
+                    </div>
 
+                </div>
             </div>
             <div class="card-footer">
                 FOOTER
