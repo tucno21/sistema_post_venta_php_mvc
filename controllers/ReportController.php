@@ -93,4 +93,97 @@ class ReportController
             'clienteTotal' => $clienteTotal,
         ]);
     }
+
+
+    public static function excel(Router $router)
+    {
+        if (isset($_GET['fechaInicial'])) {
+            $fechaInicial = $_GET['fechaInicial'];
+            $fechaFinal = $_GET['fechaFinal'];
+
+            $ventas = Sales::BuscarRango($fechaInicial, $fechaFinal);
+            // debuguear($ventas);
+        } else {
+            $ventas = Sales::AllSales();
+            // debuguear($ventas);
+        }
+
+        $name = 'reporte' . isset($_GET['fechaInicial']) . '.xls';
+
+
+        // header('Expires: 0');
+        // header('Cache-control: private');
+        // header("Content-type: application/vnd.ms-excel"); // Archivo de Excel
+        // header("Cache-Control: cache, must-revalidate");
+        // header('Content-Description: File Transfer');
+        // header('Last-Modified: ' . date('D, d M Y H:i:s'));
+        // header("Pragma: public");
+        // header('Content-Disposition:; filename="' . $name . '"');
+        // header("Content-Transfer-Encoding: binary");
+
+        header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
+        header('Content-Disposition: attachment; filename="' . $name . '"');
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Cache-Control: private", false);
+
+        echo utf8_decode(
+            "<table border='0'>
+                    <tr> 
+					<td style='font-weight:bold; border:1px solid #bebebe;'>CÓDIGO</td> 
+					<td style='font-weight:bold; border:1px solid #bebebe;'>CLIENTE</td>
+					<td style='font-weight:bold; border:1px solid #bebebe;'>VENDEDOR</td>
+					<td style='font-weight:bold; border:1px solid #bebebe;'>CANTIDAD</td>
+					<td style='font-weight:bold; border:1px solid #bebebe;'>PRODUCTOS</td>
+					<td style='font-weight:bold; border:1px solid #bebebe;'>IMPUESTO</td>
+					<td style='font-weight:bold; border:1px solid #bebebe;'>NETO</td>		
+					<td style='font-weight:bold; border:1px solid #bebebe;'>TOTAL</td>		
+					<td style='font-weight:bold; border:1px solid #bebebe;'>METODO DE PAGO</td	
+					<td style='font-weight:bold; border:1px solid #bebebe;'>FECHA</td>		
+					</tr>"
+        );
+
+        foreach ($ventas as $venta) {
+            echo utf8_decode("
+            <tr> 
+					<td style='border:1px solid #bebebe;'>" . $venta->sale_code . "</td> 
+					<td style='border:1px solid #bebebe;'>" . $venta->name . "</td>
+					<td style='border:1px solid #bebebe;'>" . $venta->name_u . "</td>
+                    <td style='border:1px solid #bebebe;'>");
+
+            $productos =  json_decode($venta->products, true);
+
+            foreach ($productos as $key => $valueProductos) {
+                echo utf8_decode(
+                    $valueProductos["cantidad"] . "<br>"
+                );
+            }
+
+            echo utf8_decode(
+                "</td>
+					<td style='border:1px solid #bebebe;'>"
+            );
+
+            foreach ($productos as $key => $valueProductos) {
+                echo utf8_decode(
+                    $valueProductos["description"] . "<br>"
+                );
+            }
+
+            echo utf8_decode(
+                "</td>"
+            );
+
+            echo utf8_decode(
+                "<td style='border:1px solid #bebebe;'>" . $venta->total - $venta->net . "</td>
+					<td style='border:1px solid #bebebe;'>" . $venta->net . "</td>		
+					<td style='border:1px solid #bebebe;'>" . $venta->total . "</td>		
+					<td style='border:1px solid #bebebe;'>" . $venta->payment_method . "</td	
+					<td style='border:1px solid #bebebe;'>" . $venta->registration_date . "</td>		
+					</tr>"
+            );
+        }
+
+        echo ("</table>");
+    }
 }

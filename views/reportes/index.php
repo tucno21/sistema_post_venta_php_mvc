@@ -20,6 +20,11 @@
                     <i class="far fa-calendar-alt"></i> Ver por fechas
                     <i class="fas fa-caret-down"></i>
                 </button>
+                <?php if (isset($_GET['fechaInicial'])) : ?>
+                    <a href="/reportes/excel?fechaInicial=<?php echo $_GET['fechaInicial']; ?>&fechaFinal=<?php echo $_GET['fechaFinal']; ?>" class="btn btn-success float-right">Descargar Reporte en Excel</a>
+                <?php else : ?>
+                    <a href="/reportes/excel" class="btn btn-success float-right">Descargar Reporte en Excel</a>
+                <?php endif; ?>
             </div>
 
             <div class="card-body">

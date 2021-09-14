@@ -76,5 +76,8 @@ $router->get('/ventas/factura', [FacturaController::class, "index"]);
 // factura
 $router->get('/reportes', [ReportController::class, "index"]);
 
+// reporte EXCEL
+$router->get('/reportes/excel', [ReportController::class, "excel"]);
+
 //lamando el metodo de ruter
 $router->comprobarRutas();
