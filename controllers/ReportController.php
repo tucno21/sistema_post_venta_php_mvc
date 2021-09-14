@@ -69,6 +69,15 @@ class ReportController
             }
         }
         //LOS CLIENTES /////////////////////////
+        $clienteTotal = [];
+        foreach ($ventasTotal as $ve) {
+            $vt = [$ve->name => $ve->total];
+
+            //sumar las ventas del mismo mes
+            foreach ($vt as $key => $value) {
+                $clienteTotal[$key] += $value;
+            }
+        }
 
         // debuguear($vendedorTotal);
 
@@ -81,7 +90,7 @@ class ReportController
             'colores2' => $colores2,
             'total' => $total,
             'vendedorTotal' => $vendedorTotal,
-
+            'clienteTotal' => $clienteTotal,
         ]);
     }
 }
