@@ -208,4 +208,26 @@ class Template
             return "error";
         }
     }
+
+    //sumar todos los valores de columna
+    public static function sumaColum($colum)
+    {
+        $query = "SELECT SUM($colum) as total FROM " . static::$table;
+
+        $stmt = self::$db->query($query);
+        //Pasar todos los datos a arreglo asociativo
+        $resultadato = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
+        //convertir el arreglo a objeto
+        $mi_objeto = json_decode(json_encode($resultadato));
+        // debuguear($mi_objeto);
+
+        //enviar objeto de la respuesta
+        return $mi_objeto;
+
+        if ($stmt) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
 }
