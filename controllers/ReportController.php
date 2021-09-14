@@ -43,7 +43,7 @@ class ReportController
         // debuguear($separacionY);
 
 
-        //LOS PRODUCTOS MAS VENDIDOS
+        //LOS PRODUCTOS MAS VENDIDOS/////////////////////////
         $colum = 'sales';
         $cantidad = '6';
 
@@ -57,6 +57,22 @@ class ReportController
         $colores = ['primary', 'secondary', 'success', 'danger', 'warning', 'dark'];
         $colores2 = ['#007BFF', '#7A8489', '#28A74B', '#DD5E5D', '#FFC127', '#5B6259'];
 
+        //LOS VENTA DE VENDEDORES /////////////////////////
+        $ventasTotal = Sales::AllSales();
+        $vendedorTotal = [];
+        foreach ($ventasTotal as $ve) {
+            $vt = [$ve->name_u => $ve->total];
+
+            //sumar las ventas del mismo mes
+            foreach ($vt as $key => $value) {
+                $vendedorTotal[$key] += $value;
+            }
+        }
+        //LOS CLIENTES /////////////////////////
+
+        // debuguear($vendedorTotal);
+
+
         $router->render('reportes/index', [
             'fechaVentaMes' => $fechaVentaMes,
             'separacionY' => $separacionY,
@@ -64,6 +80,7 @@ class ReportController
             'colores' => $colores,
             'colores2' => $colores2,
             'total' => $total,
+            'vendedorTotal' => $vendedorTotal,
 
         ]);
     }
