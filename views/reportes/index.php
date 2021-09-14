@@ -105,7 +105,7 @@
             }],
             yAxes: [{
                 ticks: {
-                    stepSize: 1500,
+                    stepSize: <?php echo $separacionY; ?>,
                     fontColor: '#efefef'
                 },
                 gridLines: {

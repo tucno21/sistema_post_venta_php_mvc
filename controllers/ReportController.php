@@ -35,11 +35,15 @@ class ReportController
             }
         }
 
+        //buscar el valor maximo de array
+        $valorMax = max($fechaVentaMes);
+        $separacionY = round($valorMax / 8);
 
-        // debuguear($fechaVentaMes);
+        // debuguear($separacionY);
 
         $router->render('reportes/index', [
             'fechaVentaMes' => $fechaVentaMes,
+            'separacionY' => $separacionY,
         ]);
     }
 }
