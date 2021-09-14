@@ -23,12 +23,12 @@
             <!-- /.col -->
             <div class="col-md-4">
                 <ul class="clearfix chart-legend">
-                    <li><i class="far fa-circle text-danger"></i> Chrome</li>
-                    <li><i class="far fa-circle text-success"></i> IE</li>
-                    <li><i class="far fa-circle text-warning"></i> FireFox</li>
-                    <li><i class="far fa-circle text-info"></i> Safari</li>
-                    <li><i class="far fa-circle text-primary"></i> Opera</li>
-                    <li><i class="far fa-circle text-secondary"></i> Navigator</li>
+                    <?php
+                    $i = 0;
+                    foreach ($productos as $producto) : ?>
+                        <li><i class="far fa-circle text-<?php echo $colores[$i]; ?>"></i> <?php echo $producto->description;
+                                                                                            $i++; ?></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <!-- /.col -->
@@ -38,15 +38,20 @@
     <!-- /.card-body -->
     <div class="p-0 card-footer bg-light">
         <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    United States of America
-                    <span class="float-right text-danger">
-                        <i class="text-sm fas fa-arrow-down"></i>
-                        12%</span>
-                </a>
-            </li>
-            <li class="nav-item">
+            <?php
+            $i = 0;
+            foreach ($productos as $producto) : ?>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <?php echo $producto->description;
+                        $i++; ?>
+                        <span class="float-right text-<?php echo $colores[$i]; ?>">
+                            <i class="text-sm fas fa-arrow-down"></i>
+                            <?php echo round(($producto->sales / $total) * 100, 1); ?>%</span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+            <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                     India
                     <span class="float-right text-success">
@@ -61,7 +66,7 @@
                         <i class="text-sm fas fa-arrow-left"></i> 0%
                     </span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
     <!-- /.footer -->

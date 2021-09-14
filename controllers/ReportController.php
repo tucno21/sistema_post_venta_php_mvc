@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Products;
 use MVC\Router;
 use Model\Sales;
 
@@ -41,9 +42,29 @@ class ReportController
 
         // debuguear($separacionY);
 
+
+        //LOS PRODUCTOS MAS VENDIDOS
+        $colum = 'sales';
+        $cantidad = '6';
+
+        $productos = Products::findCant($colum, $cantidad);
+
+        $total = 0;
+        foreach ($productos as $p) {
+            $total += $p->sales;
+        }
+        // debuguear($total);
+        $colores = ['primary', 'secondary', 'success', 'danger', 'warning', 'dark'];
+        $colores2 = ['#007BFF', '#7A8489', '#28A74B', '#DD5E5D', '#FFC127', '#5B6259'];
+
         $router->render('reportes/index', [
             'fechaVentaMes' => $fechaVentaMes,
             'separacionY' => $separacionY,
+            'productos' => $productos,
+            'colores' => $colores,
+            'colores2' => $colores2,
+            'total' => $total,
+
         ]);
     }
 }

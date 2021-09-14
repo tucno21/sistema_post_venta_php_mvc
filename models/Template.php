@@ -108,6 +108,27 @@ class Template
         $stmt->null;
     }
 
+    public static function findCant($colum, $cant)
+    {
+        $query = "SELECT * FROM " . static::$table . " ORDER BY $colum DESC LIMIT $cant";
+
+        $stmt = self::$db->query($query);
+        //Pasar todos los datos a arreglo asociativo
+        $resultadato = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
+        //convertir el arreglo a objeto
+        $mi_objeto = json_decode(json_encode($resultadato));
+        // debuguear($mi_objeto);
+
+        //enviar objeto de la respuesta
+        return $mi_objeto;
+
+        //cerrar 
+        $stmt->close();
+
+        //limpiar objeto
+        $stmt->null;
+    }
+
     //debueelve el ultimo arreglo
     public static function LastRecord()
     {
