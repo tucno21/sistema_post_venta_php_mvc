@@ -17,7 +17,7 @@ class ReportController
             $ventas = Sales::BuscarRango($fechaInicial, $fechaFinal);
             // debuguear($ventas);
         } else {
-            $ventas = Sales::AllSales();
+            $ventas = Sales::All();
             // debuguear($ventas);
         }
         // debuguear($ventas);
@@ -26,14 +26,15 @@ class ReportController
         $fechaVentaMes = [];
         foreach ($ventas as $ve) {
             $fecha = substr($ve->registration_date, 0, 7);
-            $arrayVenta = [$fecha => $ve->total];
-            // array_push($fechasVentas, $array);
+            $fechaVenta = [$fecha => $ve->total];
+            // array_push($fechasVentas, $fechaVentaMes);
 
             //sumar las ventas del mismo mes
-            foreach ($arrayVenta as $key => $value) {
+            foreach ($fechaVenta as $key => $value) {
                 $fechaVentaMes[$key] += $value;
             }
         }
+
 
         // debuguear($fechaVentaMes);
 

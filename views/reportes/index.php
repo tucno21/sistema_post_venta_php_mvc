@@ -52,8 +52,12 @@
     var salesGraphChartData = {
         labels: [
             <?php
-            foreach ($fechaVentaMes as $key => $value) {
-                echo "'" . $key . "',";
+            if ($fechaVentaMes != null) {
+                foreach ($fechaVentaMes as $key => $value) {
+                    echo "'" . $key . "',";
+                }
+            } else {
+                echo "'0',";
             }
             ?>
         ],
@@ -70,8 +74,12 @@
             pointBackgroundColor: '#efefef',
             data: [
                 <?php
-                foreach ($fechaVentaMes as $key => $value) {
-                    echo "'" . $value . "',";
+                if ($fechaVentaMes != null) {
+                    foreach ($fechaVentaMes as $key => $value) {
+                        echo "'" . $value . "',";
+                    }
+                } else {
+                    echo "'0',";
                 }
                 ?>
             ]
