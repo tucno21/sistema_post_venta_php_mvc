@@ -175,11 +175,11 @@ class ReportController
             );
 
             echo utf8_decode(
-                "<td style='border:1px solid #bebebe;'>" . $venta->total - $venta->net . "</td>
-					<td style='border:1px solid #bebebe;'>" . $venta->net . "</td>		
-					<td style='border:1px solid #bebebe;'>" . $venta->total . "</td>		
+                "<td style='border:1px solid #bebebe;'>" . number_format($venta->total - $venta->net, 2) . "</td>
+					<td style='border:1px solid #bebebe;'>" . number_format($venta->net, 2) . "</td>		
+					<td style='border:1px solid #bebebe;'>" . number_format($venta->total, 2) . "</td>		
 					<td style='border:1px solid #bebebe;'>" . $venta->payment_method . "</td	
-					<td style='border:1px solid #bebebe;'>" . $venta->registration_date . "</td>		
+					<td style='border:1px solid #bebebe;'>" . substr($venta->registration_date, 0, 10) . "</td>		
 					</tr>"
             );
         }
