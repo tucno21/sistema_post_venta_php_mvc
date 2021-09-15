@@ -127,5 +127,20 @@ if (isset($profile)) {
 
             ],
         ];
+    } else if ($profile == "Especial") {
+        $linksSidebar = [
+            [
+                'mode' => 'menu',
+                'text' => 'Categorias',
+                'url'  => '/categorias',
+                'icon' => 'fab fa-fw fa-buffer',
+            ],
+            [
+                'mode' => 'menu',
+                'text' => 'Productos',
+                'url'  => '/productos',
+                'icon' => 'fab fa-product-hunt',
+            ],
+        ];
     }
 }

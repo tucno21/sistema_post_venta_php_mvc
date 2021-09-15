@@ -1,3 +1,12 @@
+<?php
+error_reporting(error_reporting() & ~E_NOTICE);
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['profile'])) {
+    $profile = $_SESSION['profile'];
+}
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -38,7 +47,9 @@
                                     <div class="btn-group">
                                         <a class="btn btn-warning" href="/categorias/actualizar?id=<?php echo $category->id; ?>"><i class="fa fa-edit"></i></a>
 
-                                        <a class="btn btn-danger avisoAlertaxx" href="/categorias/eliminar?id=<?php echo $category->id; ?>&tipo=categoria"><i class="fa fa-times"></i></a>
+                                        <?php if ($profile == "Administrador") : ?>
+                                            <a class="btn btn-danger avisoAlertaxx" href="/categorias/eliminar?id=<?php echo $category->id; ?>&tipo=categoria"><i class="fa fa-times"></i></a>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                             </tr>

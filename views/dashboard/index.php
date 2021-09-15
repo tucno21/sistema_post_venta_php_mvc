@@ -96,7 +96,7 @@ if (isset($_SESSION['profile'])) {
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-<?php elseif ($profile == "Vendedor") : ?>
+<?php elseif ($profile == "Vendedor" || $profile == "Especial") : ?>
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
