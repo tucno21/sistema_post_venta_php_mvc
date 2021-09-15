@@ -1,3 +1,12 @@
+<?php
+error_reporting(error_reporting() & ~E_NOTICE);
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (isset($_SESSION['profile'])) {
+    $profile = $_SESSION['profile'];
+}
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -57,11 +66,13 @@
                             <th><?php echo $venta->registration_date; ?></th>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-warning" href="/ventas/actualizar?id=<?php echo $venta->id; ?>"><i class="fa fa-edit"></i></a>
-
                                     <a class="btn btn-info" href="/ventas/factura?id=<?php echo $venta->id; ?>" target="_blank"><i class="fa fa-print"></i></a>
 
-                                    <a class="btn btn-danger avisoAlertaxx" href="/ventas/eliminar?id=<?php echo $venta->id; ?>&tipo=venta"><i class="fa fa-times"></i></a>
+                                    <?php if ($profile == "Administrador") : ?>
+                                        <a class="btn btn-warning" href="/ventas/actualizar?id=<?php echo $venta->id; ?>"><i class="fa fa-edit"></i></a>
+
+                                        <a class="btn btn-danger avisoAlertaxx" href="/ventas/eliminar?id=<?php echo $venta->id; ?>&tipo=venta"><i class="fa fa-times"></i></a>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>
