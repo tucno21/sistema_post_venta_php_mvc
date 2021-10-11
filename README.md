@@ -1,7 +1,30 @@
-# PHP_MVC
+<p align="center">
+<img width="300" src="https://raw.githubusercontent.com/tucno21/sistema_post_venta_php_mvc/post/fondo.png" alt="foto">
+</a>
 
-SISTEMA POST VENTA
+## SISTEMA POS VENTA PHP - MVC
 
-## Guía de instalación
+## Requirements
 
-Iniciar en consola con `composer install`
+- PHP >= 8.0
+- COMPOSER
+
+## Intalacion
+
+clonar el repositorio.
+
+```
+git clone ...
+```
+
+linea de comando
+
+```
+composer install
+```
+
+correo y contraseña
+
+```
+admin // admin
+```
